@@ -6,9 +6,10 @@ const getPokemons = async (req, res) => {
   try {
     const { name } = req.query;
     if (name) {
-      // If the request has a query parameter
+      // Request has query parameter
       const pokemonName = name.trim().toLowerCase();
 
+      // Search pokemon in DB
       const dbPokemon = await Pokemon.findOne({
         where: {
           name: pokemonName,
@@ -18,10 +19,12 @@ const getPokemons = async (req, res) => {
         },
       });
 
+      // Pokemon exists in DB
       if (dbPokemon) {
         return res.status(200).json(dbPokemon);
       }
 
+      // GET pokemon from API
       let pokemon;
       try {
         const response = await axios.get(`${API_URL}/pokemon/${pokemonName}`);
@@ -44,7 +47,8 @@ const getPokemons = async (req, res) => {
 
       res.status(200).json(pokemon);
     } else {
-      // If the request doesn't have a query parameter
+      // Request has no query parameter
+      // GET pokemons from API
       const response = await axios.get(`${API_URL}/pokemon?limit=3`); // total 1279
       const pokemons = response.data.results;
 
@@ -73,7 +77,7 @@ const getPokemons = async (req, res) => {
       res.status(200).json(allPokemons);
     }
   } catch (error) {
-    console.log(error);
+    // Error handling
     if (error.message === "Pokemon not found") {
       res.status(404).json({ error: error.message });
     } else {

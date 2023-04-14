@@ -12,12 +12,14 @@ const getPokemonById = async (req, res) => {
     let pokemon;
 
     if (isUuid) {
+      // Search pokemon in DB
       dbPokemon = await Pokemon.findByPk(idPokemon, {
         include: {
           model: Type,
         },
       });
 
+      // Pokemon exists in DB
       if (dbPokemon) {
         pokemon = {
           id: dbPokemon.id,
@@ -36,6 +38,7 @@ const getPokemonById = async (req, res) => {
       }
     } else {
       try {
+        // GET pokemon from API
         const response = await axios.get(`${API_URL}/pokemon/${idPokemon}`);
         const apiPokemon = response.data;
         pokemon = {
@@ -57,6 +60,7 @@ const getPokemonById = async (req, res) => {
 
     res.status(200).json(pokemon);
   } catch (error) {
+    // Error handling
     if (error.message === "Pokemon not found") {
       res.status(404).json({ error: error.message });
     } else {

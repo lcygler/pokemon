@@ -4,10 +4,12 @@ const validate = async (req) => {
   const { name, hp, attack, defense, speed, height, weight, image, types } =
     req.body;
 
+  // Validate required parameters
   if (![name, hp, attack, defense, image, types].every(Boolean)) {
-    throw new Error("Necessary parameters not found");
+    throw new Error("Required parameters not found");
   }
 
+  // Validate strings
   if (
     typeof name !== "string" ||
     typeof image !== "string" ||
@@ -17,6 +19,7 @@ const validate = async (req) => {
     throw new Error("Name and Type must be strings");
   }
 
+  // Validate integers
   if (
     !Number.isInteger(hp) ||
     !Number.isInteger(attack) ||
@@ -40,6 +43,7 @@ const createPokemon = async (req, res) => {
 
     const pokemonName = name.trim().toLowerCase();
 
+    // Search pokemon in DB
     let dbPokemon = await Pokemon.findOne({ where: { name: pokemonName } });
     if (dbPokemon) {
       throw new Error("Pokemon already exists");
@@ -47,6 +51,7 @@ const createPokemon = async (req, res) => {
 
     const pokemonTypes = types.map((element) => element.trim().toLowerCase());
 
+    // Search types in DB
     const existingTypes = await Type.findAll({
       where: {
         name: pokemonTypes,
@@ -57,6 +62,7 @@ const createPokemon = async (req, res) => {
       throw new Error("Type not found");
     }
 
+    // Create pokemon in DB
     const newPokemon = await Pokemon.create({
       name: pokemonName,
       hp,
@@ -81,8 +87,9 @@ const createPokemon = async (req, res) => {
 
     res.status(200).json(createdPokemon);
   } catch (error) {
+    // Error handling
     if (
-      error.message === "Necessary parameters not found" ||
+      error.message === "Required parameters not found" ||
       error.message === "Pokemon already exists" ||
       error.message === "Type not found"
     ) {
