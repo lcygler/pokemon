@@ -11,7 +11,9 @@ const getPokemonById = async (req, res) => {
     let dbPokemon;
     if (isUuid) {
       dbPokemon = await Pokemon.findByPk(idPokemon, {
-        include: Type,
+        include: {
+          model: Type,
+        },
       });
     }
 
