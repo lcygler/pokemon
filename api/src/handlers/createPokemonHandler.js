@@ -1,4 +1,4 @@
-const createPokemonController = require("../controllers/createPokemonController.js");
+const createPokemon = require("../controllers/createPokemon.js");
 const validatePokemon = require("../utils/validatePokemon.js");
 
 const createPokemonHandler = async (req, res) => {
@@ -20,7 +20,7 @@ const createPokemonHandler = async (req, res) => {
 
     validatePokemon(pokemon);
 
-    const createdPokemon = await createPokemonController(pokemon);
+    const createdPokemon = await createPokemon(pokemon);
 
     res.status(200).json(createdPokemon);
   } catch (error) {

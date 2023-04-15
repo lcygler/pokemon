@@ -1,5 +1,5 @@
-const getPokemonController = require("../controllers/getPokemonController.js");
-const getAllPokemonsController = require("../controllers/getAllPokemonsController.js");
+const getPokemonByName = require("../controllers/getPokemonByName.js");
+const getAllPokemons = require("../controllers/getAllPokemons.js");
 
 const getPokemonsHandler = async (req, res) => {
   try {
@@ -7,11 +7,11 @@ const getPokemonsHandler = async (req, res) => {
     if (name) {
       // Request has query parameter
       const pokemonName = name.trim().toLowerCase();
-      const pokemon = await getPokemonController(pokemonName);
+      const pokemon = await getPokemonByName(pokemonName);
       res.status(200).json(pokemon);
     } else {
       // Request has no query parameter
-      const pokemons = await getAllPokemonsController();
+      const pokemons = await getAllPokemons();
       res.status(200).json(pokemons);
     }
   } catch (error) {

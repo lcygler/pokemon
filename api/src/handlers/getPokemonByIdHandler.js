@@ -1,9 +1,9 @@
-const getPokemonByIdController = require("../controllers/getPokemonByIdController.js");
+const getPokemonById = require("../controllers/getPokemonById.js");
 
 const getPokemonByIdHandler = async (req, res) => {
   try {
     const { idPokemon } = req.params;
-    const pokemon = await getPokemonByIdController(idPokemon);
+    const pokemon = await getPokemonById(idPokemon);
     res.status(200).json(pokemon);
   } catch (error) {
     if (error.message === "Pokemon not found") {

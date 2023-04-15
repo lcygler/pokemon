@@ -1,8 +1,8 @@
-const getTypesController = require("../controllers/getTypesController.js");
+const getTypes = require("../controllers/getTypes.js");
 
 const getTypesHandler = async (req, res) => {
   try {
-    const types = await getTypesController();
+    const types = await getTypes();
     res.status(200).json(types);
   } catch (error) {
     res.status(500).json({ error: "Server error" });
