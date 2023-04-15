@@ -1,8 +1,7 @@
 const { Pokemon, Type } = require("../db.js");
 
 const createPokemon = async (pokemon) => {
-  const { name, hp, attack, defense, speed, height, weight, image, types } =
-    pokemon;
+  const { name, hp, attack, defense, speed, height, weight, image, types } = pokemon;
 
   const pokemonName = name.trim().toLowerCase();
 
@@ -22,7 +21,7 @@ const createPokemon = async (pokemon) => {
   });
 
   if (existingTypes.length !== pokemonTypes.length) {
-    throw new Error("Type not found");
+    throw new Error("Invalid type");
   }
 
   // Create pokemon in DB
