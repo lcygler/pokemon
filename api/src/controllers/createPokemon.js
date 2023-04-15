@@ -1,6 +1,6 @@
 const { Pokemon, Type } = require("../db.js");
 
-const createPokemonController = async (pokemon) => {
+const createPokemon = async (pokemon) => {
   const { name, hp, attack, defense, speed, height, weight, image, types } =
     pokemon;
 
@@ -51,4 +51,4 @@ const createPokemonController = async (pokemon) => {
   return createdPokemon;
 };
 
-module.exports = createPokemonController;
+module.exports = createPokemon;

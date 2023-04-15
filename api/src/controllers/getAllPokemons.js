@@ -2,7 +2,7 @@ const { Pokemon, Type } = require("../db.js");
 const { API_URL } = require("../utils/consts.js");
 const axios = require("axios");
 
-const getAllPokemonsController = async () => {
+const getAllPokemons = async () => {
   // GET pokemons from API
   const response = await axios.get(`${API_URL}/pokemon?limit=3`); // total 1279
   const pokemons = response.data.results;
@@ -36,4 +36,4 @@ const getAllPokemonsController = async () => {
   return allPokemons;
 };
 
-module.exports = getAllPokemonsController;
+module.exports = getAllPokemons;

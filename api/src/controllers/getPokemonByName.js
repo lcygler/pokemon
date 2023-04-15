@@ -2,7 +2,7 @@ const { Pokemon, Type } = require("../db.js");
 const { API_URL } = require("../utils/consts.js");
 const axios = require("axios");
 
-const getPokemonController = async (pokemonName) => {
+const getPokemonByName = async (pokemonName) => {
   // Search pokemon in DB
   const dbPokemon = await Pokemon.findOne({
     where: {
@@ -39,4 +39,4 @@ const getPokemonController = async (pokemonName) => {
   }
 };
 
-module.exports = getPokemonController;
+module.exports = getPokemonByName;

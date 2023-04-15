@@ -2,7 +2,7 @@ const { API_URL } = require("../utils/consts.js");
 const { Type } = require("../db.js");
 const axios = require("axios");
 
-const getTypesController = async () => {
+const getTypes = async () => {
   // Search types in DB
   let types = await Type.findAll();
 
@@ -28,4 +28,4 @@ const getTypesController = async () => {
   return types;
 };
 
-module.exports = getTypesController;
+module.exports = getTypes;

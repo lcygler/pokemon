@@ -3,7 +3,7 @@ const { API_URL } = require("../utils/consts.js");
 const axios = require("axios");
 const uuid = require("uuid");
 
-const getPokemonByIdController = async (idPokemon) => {
+const getPokemonById = async (idPokemon) => {
   const isUuid = uuid.validate(idPokemon);
   let dbPokemon;
   let pokemon;
@@ -57,4 +57,4 @@ const getPokemonByIdController = async (idPokemon) => {
   return pokemon;
 };
 
-module.exports = getPokemonByIdController;
+module.exports = getPokemonById;
