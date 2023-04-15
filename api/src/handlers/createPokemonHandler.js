@@ -24,7 +24,6 @@ const createPokemonHandler = async (req, res) => {
 
     res.status(200).json(createdPokemon);
   } catch (error) {
-    console.log(error);
     if (
       error.message === "Required parameters not found" ||
       error.message === "Pokemon already exists" ||
