@@ -1,38 +1,5 @@
 const createPokemonController = require("../controllers/createPokemonController.js");
-
-const validate = (pokemon) => {
-  const { name, hp, attack, defense, speed, height, weight, image, types } =
-    pokemon;
-
-  // Validate required parameters
-  if (![name, hp, attack, defense, image, types].every(Boolean)) {
-    throw new Error("Required parameters not found");
-  }
-
-  // Validate strings
-  if (
-    typeof name !== "string" ||
-    typeof image !== "string" ||
-    typeof types[0] !== "string" ||
-    typeof types[1] !== "string"
-  ) {
-    throw new Error("Name and Type must be strings");
-  }
-
-  // Validate integers
-  if (
-    !Number.isInteger(hp) ||
-    !Number.isInteger(attack) ||
-    !Number.isInteger(defense) ||
-    !Number.isInteger(speed) ||
-    !Number.isInteger(height) ||
-    !Number.isInteger(weight)
-  ) {
-    throw new Error(
-      "HP, Attack, Defense, Speed, Height, and Weight must be integers"
-    );
-  }
-};
+const validatePokemon = require("../utils/validatePokemon.js");
 
 const createPokemonHandler = async (req, res) => {
   try {
@@ -51,12 +18,13 @@ const createPokemonHandler = async (req, res) => {
       types,
     };
 
-    validate(pokemon);
+    validatePokemon(pokemon);
 
     const createdPokemon = await createPokemonController(pokemon);
 
     res.status(200).json(createdPokemon);
   } catch (error) {
+    console.log(error);
     if (
       error.message === "Required parameters not found" ||
       error.message === "Pokemon already exists" ||
