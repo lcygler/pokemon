@@ -1,4 +1,4 @@
-import "./Detail.module.css";
+import styles from "./Detail.module.css";
 
 function Detail() {
   return (

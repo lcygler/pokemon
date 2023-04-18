@@ -1,9 +1,12 @@
-import "./Navbar.module.css";
+import styles from "./Navbar.module.css";
 
 function Navbar() {
   return (
-    <div>
-      <h1>Navbar</h1>
+    <div className={styles.container}>
+      <form>
+        <input className={styles.input} placeholder="Enter a pokemon name or ID..." />
+        <button className={styles.button}>Search</button>
+      </form>
     </div>
   );
 }
