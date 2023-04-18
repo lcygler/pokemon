@@ -4,7 +4,7 @@ const axios = require("axios");
 
 const getAllPokemons = async () => {
   // GET pokemons from API
-  const response = await axios.get(`${API_URL}/pokemon?limit=3`); // total 1279
+  const response = await axios.get(`${API_URL}/pokemon?limit=5`);
   const pokemons = response.data.results;
 
   const apiPokemons = await Promise.all(
