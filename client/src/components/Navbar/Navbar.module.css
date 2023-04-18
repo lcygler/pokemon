@@ -1,0 +1,28 @@
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: 20px;
+  justify-content: center;
+  margin-bottom: 30px;
+  width: 100vw;
+}
+
+.input {
+  border: 1px solid;
+  border-radius: 25px 0 0 25px;
+  box-sizing: border-box;
+  height: 30px;
+  outline: none;
+  padding: 0 10px;
+  text-align: center;
+  width: 210px;
+}
+
+.button {
+  border: 1px solid;
+  border-radius: 0 25px 25px 0;
+  box-sizing: border-box;
+  height: 30px;
+  padding: 0 10px;
+}
