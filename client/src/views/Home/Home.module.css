@@ -3,3 +3,29 @@
   display: flex;
   flex-direction: column;
 }
+
+.nav {
+  align-items: center;
+  background-color: cadetblue;
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.pagination {
+  margin: 20px 0;
+}
+
+.prevButton,
+.nextButton {
+  background-color: greenyellow;
+  border: none;
+  border-radius: 25px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 10px 25px;
+}
+
+.prevButton,
+.nextButton:hover {
+  cursor: pointer;
+}
