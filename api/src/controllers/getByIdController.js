@@ -6,7 +6,6 @@ const uuid = require("uuid");
 const getPokemonById = async (idPokemon) => {
   const isUuid = uuid.validate(idPokemon);
   let dbPokemon;
-  let pokemon;
 
   if (isUuid) {
     // Search pokemon in DB
@@ -18,7 +17,7 @@ const getPokemonById = async (idPokemon) => {
 
     if (dbPokemon) {
       // Pokemon exists in DB
-      pokemon = {
+      return {
         id: dbPokemon.id,
         name: dbPokemon.name,
         hp: dbPokemon.hp,
@@ -38,7 +37,7 @@ const getPokemonById = async (idPokemon) => {
     try {
       const response = await axios.get(`${API_URL}/pokemon/${idPokemon}`);
       const apiPokemon = response.data;
-      pokemon = {
+      return {
         id: apiPokemon.id,
         name: apiPokemon.name,
         hp: apiPokemon.stats[0].base_stat,
@@ -54,7 +53,6 @@ const getPokemonById = async (idPokemon) => {
       throw new Error("Pokemon not found");
     }
   }
-  return pokemon;
 };
 
 module.exports = getPokemonById;

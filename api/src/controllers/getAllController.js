@@ -34,8 +34,6 @@ const getAllPokemons = async () => {
   const formattedDbPokemons = dbPokemons.map((element) => {
     const { id, name, hp, attack, defense, speed, height, weight, image, types } = element.dataValues;
 
-    const formattedTypes = types.map((element) => element.name);
-
     return {
       id,
       name,
@@ -46,7 +44,7 @@ const getAllPokemons = async () => {
       height,
       weight,
       image,
-      types: formattedTypes,
+      types: types.map((element) => element.name),
     };
   });
 

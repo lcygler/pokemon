@@ -15,7 +15,18 @@ const getPokemonByName = async (pokemonName) => {
 
   // Pokemon exists in DB
   if (dbPokemon) {
-    return dbPokemon;
+    return {
+      id: dbPokemon.id,
+      name: dbPokemon.name,
+      hp: dbPokemon.hp,
+      attack: dbPokemon.attack,
+      defense: dbPokemon.defense,
+      speed: dbPokemon.speed,
+      height: dbPokemon.height,
+      weight: dbPokemon.weight,
+      image: dbPokemon.image,
+      types: dbPokemon.types.map((element) => element.name),
+    };
   }
 
   // GET pokemon from API
