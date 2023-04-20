@@ -36,6 +36,7 @@ const createPokemon = async (pokemon) => {
     image,
   });
 
+  // Add types to new pokemon
   await newPokemon.addTypes(existingTypes);
 
   const createdPokemon = await Pokemon.findOne({
@@ -47,7 +48,18 @@ const createPokemon = async (pokemon) => {
     },
   });
 
-  return createdPokemon;
+  return {
+    id: createdPokemon.id,
+    name: createdPokemon.name,
+    hp: createdPokemon.hp,
+    attack: createdPokemon.attack,
+    defense: createdPokemon.defense,
+    speed: createdPokemon.speed,
+    height: createdPokemon.height,
+    weight: createdPokemon.weight,
+    image: createdPokemon.image,
+    types: createdPokemon.types.map((element) => element.name),
+  };
 };
 
 module.exports = createPokemon;
