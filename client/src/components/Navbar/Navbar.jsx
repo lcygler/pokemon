@@ -4,7 +4,7 @@ function Navbar() {
   return (
     <div className={styles.container}>
       <form>
-        <input className={styles.input} placeholder="Enter a pokemon name or ID..." />
+        <input className={styles.input} placeholder="Search for a pokemon..." />
         <button className={styles.button}>Search</button>
       </form>
     </div>

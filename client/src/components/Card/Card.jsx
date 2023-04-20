@@ -1,13 +1,18 @@
+import { Link } from "react-router-dom";
 import styles from "./Card.module.css";
 
-function Card() {
+function Card({ id, name, types, image }) {
+  const formattedName = name.toUpperCase();
+  const formattedTypes = types.map((element) => element.charAt(0).toUpperCase() + element.slice(1)).join(", ");
+
   return (
-    <div className={styles.cardContainer}>
-      <h2>Nombre</h2>
-      <p>Tipo 1</p>
-      <p>Tipo 2</p>
-      <img src="" alt="" />
-    </div>
+    <Link to={`/home/${id}`}>
+      <div className={styles.container}>
+        <h2>{formattedName}</h2>
+        <img src={image} alt="" className={styles.image} />
+        {formattedTypes && <p className={styles.types}>{formattedTypes}</p>}
+      </div>
+    </Link>
   );
 }
 
