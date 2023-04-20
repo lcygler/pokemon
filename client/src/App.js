@@ -1,13 +1,15 @@
 import { Route, Switch } from "react-router-dom";
+import { Create, Detail, Home, Landing } from "./views/index";
+
 import "./App.css";
-import { Create, Detail, Home } from "./views/index";
 
 function App() {
   return (
     <div className="App">
       <Switch>
+        <Route exact path="/" component={Landing} />
         <Route exact path="/home" component={Home} />
-        <Route path="/home/:id" component={Detail} />
+        <Route path="/home/:idOrName" component={Detail} />
         <Route path="/create" component={Create} />
       </Switch>
     </div>
