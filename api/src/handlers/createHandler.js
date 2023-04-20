@@ -1,5 +1,5 @@
 const createController = require("../controllers/createController.js");
-const validate = require("../utils/validate.js");
+const validatePokemon = require("../utils/validators.js");
 
 const createHandler = async (req, res) => {
   try {
@@ -17,7 +17,7 @@ const createHandler = async (req, res) => {
       types,
     };
 
-    validate(pokemon);
+    validatePokemon(pokemon);
 
     const createdPokemon = await createController(pokemon);
 
