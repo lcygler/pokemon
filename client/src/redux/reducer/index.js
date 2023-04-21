@@ -3,7 +3,6 @@ import { CLEAR_DETAIL, CREATE_POKEMON, GET_ALL, GET_BY_ID, GET_BY_NAME, GET_TYPE
 const initialState = {
   allPokemons: [],
   selectedPokemon: {},
-  createdPokemon: {},
   types: [],
 };
 
@@ -18,7 +17,7 @@ const rootReducer = (state = initialState, action) => {
     case CREATE_POKEMON:
       return {
         ...state,
-        createdPokemon: action.payload,
+        selectedPokemon: action.payload,
       };
 
     case GET_ALL:
