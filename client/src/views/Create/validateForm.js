@@ -1,9 +1,6 @@
-const lettersRegex = /^[a-zA-Z]+$/;
+import { imageRegex, lettersRegex, urlRegex } from "../../utils/consts";
 
-const urlRegex =
-  /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/;
-
-function validateForm(formData, errors, setErrors) {
+export function validateForm(formData, errors, setErrors) {
   let newErrors = { ...errors };
   const { name, image, hp, attack, defense, speed, height, weight, type1, type2 } = formData;
 
@@ -17,7 +14,8 @@ function validateForm(formData, errors, setErrors) {
   //* Image
   if (!image) newErrors.image = "Image cannot be empty";
   else if (typeof image !== "string") newErrors.image = "Image must be string";
-  else if (!urlRegex.test(image)) newErrors.image = "Image must be an URL";
+  else if (!urlRegex.test(image)) newErrors.image = "Image must be a valid URL";
+  else if (!imageRegex.test(image)) newErrors.image = "URL must be a valid image";
   else newErrors.image = "";
 
   //* HP
@@ -67,10 +65,9 @@ function validateForm(formData, errors, setErrors) {
   //* Type 2 (Optional)
   if (type2) {
     if (typeof type2 !== "string") newErrors.type2 = "Type must be string";
+    else if (type2 === type1) newErrors.type2 = "Type cannot be the same";
     else newErrors.type2 = "";
   }
 
   setErrors(newErrors);
 }
-
-module.exports = { validateForm };
