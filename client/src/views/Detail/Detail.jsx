@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -12,7 +12,7 @@ const Detail = () => {
   const { idOrName } = useParams();
 
   useEffect(() => {
-    if (isUUID(idOrName) || typeof idOrName === "number") {
+    if (isUUID(idOrName) || !isNaN(idOrName)) {
       dispatch(getById(idOrName));
     } else if (typeof idOrName === "string") {
       dispatch(getByName(idOrName));
