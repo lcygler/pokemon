@@ -1,16 +1,13 @@
 import { Link } from "react-router-dom";
-import styles from "./Navbar.module.css";
+import styles from "./SearchBar.module.css";
 
-function Navbar() {
+function SearchBar() {
   return (
     <div className={styles.container}>
       <form>
         <input className={styles.input} placeholder="Search for a pokemon..." />
         <button className={styles.button}>Search</button>
       </form>
-      <Link to="/home" className={styles.link}>
-        <span>Home</span>
-      </Link>
       <Link to="/create" className={styles.link}>
         <span>Create</span>
       </Link>
@@ -18,4 +15,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default SearchBar;

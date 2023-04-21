@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAll, getTypes } from "../../redux/actions";
 
-import { Cards, Navbar } from "../../components/index";
+import { Cards, SearchBar } from "../../components/index";
 import styles from "./Home.module.css";
 
 function Home() {
@@ -30,7 +30,7 @@ function Home() {
   return (
     <div className={styles.home}>
       <div className={styles.nav}>
-        <Navbar />
+        <SearchBar />
       </div>
 
       <Cards currentPokemons={currentPokemons} />
