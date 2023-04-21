@@ -24,13 +24,14 @@ const createHandler = async (req, res) => {
     res.status(200).json(createdPokemon);
   } catch (error) {
     if (
-      error.message === "Required parameters not found" ||
+      error.message === "Required fields missing" ||
       error.message === "Pokemon already exists" ||
       error.message === "Invalid type"
     ) {
       res.status(404).json({ error: error.message });
     } else if (
-      error.message === "Name and type must be strings" ||
+      error.message === "Name and image must be strings" ||
+      error.message === "Types must be strings" ||
       error.message === "HP, attack, defense, speed, height, and weight must be integers"
     ) {
       res.status(400).json({ error: error.message });
