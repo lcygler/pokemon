@@ -12,7 +12,8 @@ const Create = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const types = useSelector((state) => state.types);
-  const createdPokemon = useSelector((state) => state.createdPokemon);
+  const selectedPokemon = useSelector((state) => state.selectedPokemon);
+  const [sortedTypes, setSortedTypes] = useState([]);
 
   useEffect(() => {
     dispatch(getTypes());
@@ -35,12 +36,10 @@ const Create = () => {
   }, [types]);
 
   useEffect(() => {
-    if (Object.keys(createdPokemon).length > 0) {
-      history.push(`/home/${createdPokemon.id}`);
+    if (selectedPokemon.id) {
+      history.push(`/home/${selectedPokemon.id}`);
     }
-  }, [createdPokemon, history]);
-
-  const [sortedTypes, setSortedTypes] = useState([]);
+  }, [selectedPokemon, history]);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -103,67 +102,111 @@ const Create = () => {
     }
   };
 
-  const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+  const handleForm = (e) => {
+    const { form } = e.target;
+
+    const formFields = {};
+    for (const element of form.elements) {
+      if (element.name) {
+        formFields[element.name] = element.value;
+      }
+    }
+
+    validateForm(formFields, errors, setErrors);
   };
 
-  const handleSelectChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   return (
     <div>
       <h2>Create Pokemon</h2>
-      <form onSubmit={handleSubmit}>
+      <form onChange={handleForm} onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">Name*:</label>
-          <input type="text" id="name" name="name" value={formData.name} onChange={handleInputChange} />
-          <small className={errors.name ? styles.error : styles.success}>{errors.name}</small>
+          <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} />
+          <small className={styles.error}>{errors.name}</small>
         </div>
         <div>
           <label htmlFor="hp">HP*:</label>
-          <input type="number" id="hp" name="hp" value={formData.hp} onChange={handleInputChange} />
-          <small className={errors.hp ? styles.error : styles.success}>{errors.hp}</small>
+          <input type="number" id="hp" name="hp" min="0" max="255" value={formData.hp} onChange={handleChange} />
+          <small className={styles.error}>{errors.hp}</small>
         </div>
         <div>
           <label htmlFor="attack">Attack*:</label>
-          <input type="number" id="attack" name="attack" value={formData.attack} onChange={handleInputChange} />
-          <small className={errors.attack ? styles.error : styles.success}>{errors.attack}</small>
+          <input
+            type="number"
+            id="attack"
+            name="attack"
+            min="0"
+            max="255"
+            value={formData.attack}
+            onChange={handleChange}
+          />
+          <small className={styles.error}>{errors.attack}</small>
         </div>
         <div>
           <label htmlFor="defense">Defense*:</label>
-          <input type="number" id="defense" name="defense" value={formData.defense} onChange={handleInputChange} />
-          <small className={errors.defense ? styles.error : styles.success}>{errors.defense}</small>
+          <input
+            type="number"
+            id="defense"
+            name="defense"
+            min="0"
+            max="255"
+            value={formData.defense}
+            onChange={handleChange}
+          />
+          <small className={styles.error}>{errors.defense}</small>
         </div>
         <div>
           <label htmlFor="speed">Speed:</label>
-          <input type="number" id="speed" name="speed" value={formData.speed} onChange={handleInputChange} />
-          <small className={errors.speed ? styles.error : styles.success}>{errors.speed}</small>
+          <input
+            type="number"
+            id="speed"
+            name="speed"
+            min="0"
+            max="255"
+            value={formData.speed}
+            onChange={handleChange}
+          />
+          <small className={styles.error}>{errors.speed}</small>
         </div>
         <div>
           <label htmlFor="height">Height:</label>
-          <input type="number" id="height" name="height" value={formData.height} onChange={handleInputChange} />
-          <small className={errors.height ? styles.error : styles.success}>{errors.height}</small>
+          <input
+            type="number"
+            id="height"
+            name="height"
+            min="1"
+            max="14"
+            value={formData.height}
+            onChange={handleChange}
+          />
+          <small className={styles.error}>{errors.height}</small>
         </div>
         <div>
           <label htmlFor="weight">Weight:</label>
-          <input type="number" id="weight" name="weight" value={formData.weight} onChange={handleInputChange} />
-          <small className={errors.weight ? styles.error : styles.success}>{errors.weight}</small>
+          <input
+            type="number"
+            id="weight"
+            name="weight"
+            min="1"
+            max="999"
+            value={formData.weight}
+            onChange={handleChange}
+          />
+          <small className={styles.error}>{errors.weight}</small>
         </div>
         <div>
           <label htmlFor="image">Image URL*:</label>
-          <input type="text" id="image" name="image" value={formData.image} onChange={handleInputChange} />
-          <small className={errors.image ? styles.error : styles.success}>{errors.image}</small>
+          <input type="text" id="image" name="image" value={formData.image} onChange={handleChange} />
+          <small className={styles.error}>{errors.image}</small>
         </div>
         <div>
           <label htmlFor="type1">Type 1*:</label>
-          <select id="type1" name="type1" value={formData.type1} onChange={handleSelectChange}>
+          <select id="type1" name="type1" value={formData.type1} onChange={handleChange}>
             <option value=""></option>
             {sortedTypes.map((element) => (
               <option key={element.id} value={element.name}>
@@ -171,11 +214,11 @@ const Create = () => {
               </option>
             ))}
           </select>
-          <small className={errors.type1 ? styles.error : styles.success}>{errors.type1}</small>
+          <small className={styles.error}>{errors.type1}</small>
         </div>
         <div>
           <label htmlFor="type2">Type 2:</label>
-          <select id="type2" name="type2" value={formData.type2} onChange={handleSelectChange}>
+          <select id="type2" name="type2" value={formData.type2} onChange={handleChange}>
             <option value=""></option>
             {sortedTypes.map((element) => (
               <option key={element.id} value={element.name}>
@@ -183,7 +226,7 @@ const Create = () => {
               </option>
             ))}
           </select>
-          <small className={errors.type2 ? styles.error : styles.success}>{errors.type2}</small>
+          <small className={styles.error}>{errors.type2}</small>
         </div>
         <button type="submit">Create</button>
         <Link to="/home" className={styles.link}>
