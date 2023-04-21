@@ -1,22 +1,24 @@
 const validatePokemon = (pokemon) => {
   const { name, hp, attack, defense, speed, height, weight, image, types } = pokemon;
+  const filteredTypes = types.filter(Boolean);
 
-  // Validate required parameters
+  //* Validate required fields
   if (![name, hp, attack, defense, image, types].every(Boolean)) {
-    throw new Error("Required parameters not found");
+    throw new Error("Required fields missing");
   }
 
-  // Validate strings
-  if (
-    typeof name !== "string" ||
-    typeof image !== "string" ||
-    typeof types[0] !== "string" ||
-    typeof types[1] !== "string"
-  ) {
-    throw new Error("Name and type must be strings");
+  //* Validate strings
+  if (typeof name !== "string" || typeof image !== "string") {
+    throw new Error("Name and image must be strings");
   }
 
-  // Validate integers
+  for (element of filteredTypes) {
+    if (typeof element !== "string") {
+      throw new Error("Types must be strings");
+    }
+  }
+
+  //* Validate integers
   if (
     !Number.isInteger(hp) ||
     !Number.isInteger(attack) ||
