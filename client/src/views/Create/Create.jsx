@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { createPokemon, getTypes } from "../../redux/actions";
@@ -8,9 +8,9 @@ import { validateForm } from "./validateForm";
 
 import styles from "./Create.module.css";
 
-const Create = (props) => {
-  const { history } = props;
+const Create = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const types = useSelector((state) => state.types);
   const createdPokemon = useSelector((state) => state.createdPokemon);
 
@@ -194,4 +194,4 @@ const Create = (props) => {
   );
 };
 
-export default withRouter(Create);
+export default Create;
