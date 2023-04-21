@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { clearDetail, getById, getByName } from "../../redux/actions";
 
-import { isUUID } from "../../utils/validators";
+import { uuidRegex } from "../../utils/consts";
 import styles from "./Detail.module.css";
 
 const Detail = () => {
@@ -12,7 +12,7 @@ const Detail = () => {
   const { idOrName } = useParams();
 
   useEffect(() => {
-    if (isUUID(idOrName) || !isNaN(idOrName)) {
+    if (uuidRegex.test(idOrName) || !isNaN(idOrName)) {
       dispatch(getById(idOrName));
     } else if (typeof idOrName === "string") {
       dispatch(getByName(idOrName));
