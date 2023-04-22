@@ -18,10 +18,11 @@
   width: 210px;
 }
 
-.button {
+.searchButton {
   border: transparent;
   border-radius: 0 25px 25px 0;
   box-sizing: border-box;
+  cursor: pointer;
   height: 30px;
   padding: 0 10px;
 }
