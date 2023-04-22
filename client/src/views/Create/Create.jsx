@@ -125,17 +125,17 @@ const Create = () => {
       <h2>Create Pokemon</h2>
       <form onChange={handleForm} onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">Name*:</label>
+          <label htmlFor="name">Name:</label>
           <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} />
           <small className={styles.error}>{errors.name}</small>
         </div>
         <div>
-          <label htmlFor="hp">HP*:</label>
+          <label htmlFor="hp">HP:</label>
           <input type="number" id="hp" name="hp" min="0" max="255" value={formData.hp} onChange={handleChange} />
           <small className={styles.error}>{errors.hp}</small>
         </div>
         <div>
-          <label htmlFor="attack">Attack*:</label>
+          <label htmlFor="attack">Attack:</label>
           <input
             type="number"
             id="attack"
@@ -148,7 +148,7 @@ const Create = () => {
           <small className={styles.error}>{errors.attack}</small>
         </div>
         <div>
-          <label htmlFor="defense">Defense*:</label>
+          <label htmlFor="defense">Defense:</label>
           <input
             type="number"
             id="defense"
@@ -200,12 +200,12 @@ const Create = () => {
           <small className={styles.error}>{errors.weight}</small>
         </div>
         <div>
-          <label htmlFor="image">Image*:</label>
+          <label htmlFor="image">Image:</label>
           <input type="text" id="image" name="image" value={formData.image} onChange={handleChange} />
           <small className={styles.error}>{errors.image}</small>
         </div>
         <div>
-          <label htmlFor="type1">Type 1*:</label>
+          <label htmlFor="type1">Type 1:</label>
           <select id="type1" name="type1" value={formData.type1} onChange={handleChange}>
             <option value=""></option>
             {sortedTypes.map((element) => (
