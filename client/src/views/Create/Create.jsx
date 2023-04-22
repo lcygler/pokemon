@@ -200,7 +200,7 @@ const Create = () => {
           <small className={styles.error}>{errors.weight}</small>
         </div>
         <div>
-          <label htmlFor="image">Image URL*:</label>
+          <label htmlFor="image">Image*:</label>
           <input type="text" id="image" name="image" value={formData.image} onChange={handleChange} />
           <small className={styles.error}>{errors.image}</small>
         </div>
