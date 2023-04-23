@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { createPokemon, getTypes } from "../../redux/actions";
+import { createPokemon, getAll, getTypes } from "../../redux/actions";
 
 import { validateForm } from "./validateForm";
 
@@ -12,10 +12,12 @@ const Create = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const types = useSelector((state) => state.types);
+  const allPokemons = useSelector((state) => state.allPokemons);
   const selectedPokemon = useSelector((state) => state.selectedPokemon);
   const [sortedTypes, setSortedTypes] = useState([]);
 
   useEffect(() => {
+    dispatch(getAll());
     dispatch(getTypes());
   }, [dispatch]);
 
@@ -70,11 +72,11 @@ const Create = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    validateForm(formData, errors, setErrors);
+    validateForm(formData, errors, setErrors, allPokemons);
 
     if (Object.values(errors).every((error) => error === "")) {
       const newPokemon = {
-        name: formData.name,
+        name: formData.name.trim().toLowerCase(),
         hp: Math.floor(formData.hp),
         attack: Math.floor(formData.attack),
         defense: Math.floor(formData.defense),
@@ -112,7 +114,7 @@ const Create = () => {
       }
     }
 
-    validateForm(formFields, errors, setErrors);
+    validateForm(formFields, errors, setErrors, allPokemons);
   };
 
   const handleChange = (e) => {
