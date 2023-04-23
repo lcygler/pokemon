@@ -99,7 +99,7 @@ const Create = () => {
         speed: Math.floor(formData.speed),
         height: Math.floor(formData.height),
         weight: Math.floor(formData.weight),
-        image: formData.image,
+        image: formData.image.trim(),
         types: [formData.type1, formData.type2].filter(Boolean),
       };
 
