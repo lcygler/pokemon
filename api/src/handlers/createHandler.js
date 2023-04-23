@@ -5,7 +5,7 @@ const createHandler = async (req, res) => {
   try {
     const { name, hp, attack, defense, speed, height, weight, image, types } = req.body;
 
-    const pokemon = {
+    const newPokemon = {
       name,
       hp,
       attack,
@@ -17,22 +17,19 @@ const createHandler = async (req, res) => {
       types,
     };
 
-    validatePokemon(pokemon);
+    validatePokemon(newPokemon);
 
-    const createdPokemon = await createController(pokemon);
+    const createdPokemon = await createController(newPokemon);
 
     res.status(200).json(createdPokemon);
   } catch (error) {
-    if (
-      error.message === "Required fields missing" ||
-      error.message === "Pokemon already exists" ||
-      error.message === "Invalid type"
-    ) {
+    if (error.message === "Required fields missing" || error.message === "Pokemon already exists") {
       res.status(404).json({ error: error.message });
     } else if (
       error.message === "Name and image must be strings" ||
       error.message === "Types must be strings" ||
-      error.message === "HP, attack, defense, speed, height, and weight must be integers"
+      error.message === "Invalid type" ||
+      error.message === "HP, attack, defense, speed, height and weight must be integers"
     ) {
       res.status(400).json({ error: error.message });
     } else {
