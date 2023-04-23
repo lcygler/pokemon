@@ -66,7 +66,7 @@ const Detail = () => {
         <>
           {showError ? (
             <div>
-              <h3 className={styles.error}>Oops! Pokemon not found</h3>
+              <h3 className={styles.error}>Oops! Pokemon not found 👀</h3>
               <p className={styles.error}>Please check the spelling and try again</p>
               <Link to="/home" className={styles.link}>
                 <button className={styles.homeButton}>Home</button>
