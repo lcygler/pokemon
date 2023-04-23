@@ -1,13 +1,13 @@
-const validatePokemon = (pokemon) => {
-  const { name, hp, attack, defense, speed, height, weight, image, types } = pokemon;
+const validatePokemon = (newPokemon) => {
+  const { name, hp, attack, defense, speed, height, weight, image, types } = newPokemon;
   const filteredTypes = types.filter(Boolean);
 
-  //* Validate required fields
+  //* Required fields
   if (![name, hp, attack, defense, image, types].every(Boolean)) {
     throw new Error("Required fields missing");
   }
 
-  //* Validate strings
+  //* DataType String
   if (typeof name !== "string" || typeof image !== "string") {
     throw new Error("Name and image must be strings");
   }
@@ -18,7 +18,7 @@ const validatePokemon = (pokemon) => {
     }
   }
 
-  //* Validate integers
+  //* DataType Integer
   if (
     !Number.isInteger(hp) ||
     !Number.isInteger(attack) ||
@@ -27,7 +27,7 @@ const validatePokemon = (pokemon) => {
     !Number.isInteger(height) ||
     !Number.isInteger(weight)
   ) {
-    throw new Error("HP, attack, defense, speed, height, and weight must be integers");
+    throw new Error("HP, attack, defense, speed, height and weight must be integers");
   }
 };
 
