@@ -8,7 +8,7 @@ export function validateForm(formData, errors, setErrors, allPokemons) {
   if (!name) newErrors.name = "Name cannot be empty";
   else if (typeof name !== "string") newErrors.name = "Name must be string";
   else if (!lettersRegex.test(name)) newErrors.name = "Name must only contain letters";
-  else if (name.length < 5) newErrors.name = "Name must have at least 5 characters";
+  else if (name.length < 4) newErrors.name = "Name must have at least 4 characters";
   else if (allPokemons?.some((element) => element.name === name.trim().toLowerCase()))
     newErrors.name = "Name already in use";
   else newErrors.name = "";
@@ -22,39 +22,39 @@ export function validateForm(formData, errors, setErrors, allPokemons) {
 
   //* HP
   if (!hp) newErrors.hp = "HP cannot be empty";
-  else if (!Number.isInteger(parseInt(hp))) newErrors.hp = "HP must be an integer";
+  else if (!Number.isInteger(Number(hp))) newErrors.hp = "HP must be an integer";
   else if (hp < 0 || hp > 255) newErrors.hp = "HP must be a number between 0 and 255";
   else newErrors.hp = "";
 
   //* Attack
   if (!attack) newErrors.attack = "Attack cannot be empty";
-  else if (!Number.isInteger(parseInt(attack))) newErrors.attack = "Attack must be an integer";
+  else if (!Number.isInteger(Number(attack))) newErrors.attack = "Attack must be an integer";
   else if (attack < 0 || attack > 255) newErrors.attack = "Attack must be a number between 0 and 255";
   else newErrors.attack = "";
 
   //* Defense
   if (!defense) newErrors.defense = "Defense cannot be empty";
-  else if (!Number.isInteger(parseInt(defense))) newErrors.defense = "Defense must be an integer";
+  else if (!Number.isInteger(Number(defense))) newErrors.defense = "Defense must be an integer";
   else if (defense < 0 || defense > 255) newErrors.defense = "Defense must be a number between 0 and 255";
   else newErrors.defense = "";
 
   //* Speed (Optional)
   if (speed) {
-    if (!Number.isInteger(parseInt(speed))) newErrors.speed = "Speed must be an integer";
+    if (!Number.isInteger(Number(speed))) newErrors.speed = "Speed must be an integer";
     else if (speed < 0 || speed > 255) newErrors.speed = "Speed must be a number between 0 and 255";
     else newErrors.speed = "";
   }
 
   //* Height (Optional)
   if (height) {
-    if (!Number.isInteger(parseInt(height))) newErrors.height = "Height must be an integer";
+    if (!Number.isInteger(Number(height))) newErrors.height = "Height must be an integer";
     else if (height < 1 || height > 14) newErrors.height = "Height must be a number between 1 and 14";
     else newErrors.height = "";
   }
 
   //* Weight (Optional)
   if (weight) {
-    if (!Number.isInteger(parseInt(weight))) newErrors.weight = "Weight must be an integer";
+    if (!Number.isInteger(Number(weight))) newErrors.weight = "Weight must be an integer";
     else if (weight < 1 || weight > 999) newErrors.weight = "Weight must be a number between 1 and 999";
     else newErrors.weight = "";
   }
