@@ -25,6 +25,7 @@ const getAllPokemons = async () => {
     })
   );
 
+  // GET pokemons from DB
   const dbPokemons = await Pokemon.findAll({
     include: {
       model: Type,
