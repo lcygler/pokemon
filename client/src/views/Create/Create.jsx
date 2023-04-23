@@ -72,9 +72,7 @@ const Create = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    validateForm(formData, errors, setErrors, allPokemons);
-
-    if (Object.values(errors).every((error) => error === "")) {
+    if (formData.name && Object.values(errors).every((error) => error === "")) {
       const newPokemon = {
         name: formData.name.trim().toLowerCase(),
         hp: Math.floor(formData.hp),
