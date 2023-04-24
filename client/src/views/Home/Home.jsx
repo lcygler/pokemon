@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAll, getTypes } from "../../redux/actions";
 
-import { Cards, SearchBar } from "../../components/index";
+import { Cards, FilterAndOrder, SearchBar } from "../../components/index";
 import styles from "./Home.module.css";
 
 function Home() {
@@ -32,6 +32,8 @@ function Home() {
       <div className={styles.nav}>
         <SearchBar />
       </div>
+
+      <FilterAndOrder />
 
       <Cards currentPokemons={currentPokemons} />
 
