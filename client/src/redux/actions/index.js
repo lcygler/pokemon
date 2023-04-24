@@ -101,31 +101,31 @@ export const clearDetail = () => {
 };
 
 //* Filter and Order
-export const filterByOrigin = (origin) => {
+export const filterByOrigin = (selectedOrigin) => {
   return {
     type: FILTER_BY_ORIGIN,
-    payload: origin,
+    payload: selectedOrigin,
   };
 };
 
-export const filterByType = (type) => {
+export const filterByType = (selectedType) => {
   return {
     type: FILTER_BY_TYPE,
-    payload: type,
+    payload: selectedType,
   };
 };
 
-export const orderByAttack = (attack) => {
+export const orderByAttack = (selectedAttackOrder) => {
   return {
     type: ORDER_BY_ATTACK,
-    payload: attack,
+    payload: selectedAttackOrder,
   };
 };
 
-export const orderByName = (name) => {
+export const orderByName = (selectedNameOrder) => {
   return {
     type: ORDER_BY_NAME,
-    payload: name,
+    payload: selectedNameOrder,
   };
 };
 
