@@ -14,28 +14,11 @@ const Create = () => {
   const types = useSelector((state) => state.types);
   const allPokemons = useSelector((state) => state.allPokemons);
   const selectedPokemon = useSelector((state) => state.selectedPokemon);
-  const [sortedTypes, setSortedTypes] = useState([]);
 
   useEffect(() => {
     dispatch(getAll());
     dispatch(getTypes());
   }, [dispatch]);
-
-  useEffect(() => {
-    if (types.length > 0) {
-      setSortedTypes(
-        types.sort((a, b) => {
-          if (a.name < b.name) {
-            return -1;
-          } else if (a.name > b.name) {
-            return 1;
-          } else {
-            return 0;
-          }
-        })
-      );
-    }
-  }, [types]);
 
   useEffect(() => {
     if (selectedPokemon.id) {
@@ -208,7 +191,7 @@ const Create = () => {
           <label htmlFor="type1">Type 1</label>
           <select id="type1" name="type1" value={formData.type1} onChange={handleChange}>
             <option value=""></option>
-            {sortedTypes.map((element) => (
+            {types.map((element) => (
               <option key={element.id} value={element.name}>
                 {element.name.charAt(0).toUpperCase() + element.name.slice(1)}
               </option>
@@ -220,7 +203,7 @@ const Create = () => {
           <label htmlFor="type2">Type 2</label>
           <select id="type2" name="type2" value={formData.type2} onChange={handleChange}>
             <option value=""></option>
-            {sortedTypes.map((element) => (
+            {types.map((element) => (
               <option key={element.id} value={element.name}>
                 {element.name.charAt(0).toUpperCase() + element.name.slice(1)}
               </option>
