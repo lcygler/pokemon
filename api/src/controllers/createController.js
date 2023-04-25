@@ -2,7 +2,6 @@ const { Pokemon, Type } = require("../db.js");
 
 const createPokemon = async (pokemon) => {
   const { name, hp, attack, defense, speed, height, weight, image, types } = pokemon;
-
   const pokemonName = name.trim().toLowerCase();
 
   // Search pokemon in DB
