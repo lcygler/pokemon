@@ -1,3 +1,80 @@
+.container {
+  background-color: bisque;
+  display: grid;
+  height: 100vh;
+  /* margin: 0;
+  padding: 0; */
+  place-items: center;
+  /* width: 100vw; */
+}
+
+.name {
+  align-items: center;
+  background-color: rgb(219, 157, 76);
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.cardContainer {
+  background-color: burlywood;
+  border: 1px solid grey;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  height: 650px;
+  /* overflow: auto; */
+  width: 500px;
+}
+
+.propsContainer {
+  /* background-color: aquamarine; */
+  display: flex;
+  flex-direction: row;
+}
+
+.imageContainer {
+  /* background-color: aqua; */
+  height: 100%;
+  padding-left: 10px;
+  width: 60%;
+}
+
+.image {
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
+}
+
+.textContainer {
+  align-items: center;
+  /* background-color: blue; */
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.buttonContainer {
+  align-items: center;
+  /* background-color: brown; */
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.homeButton {
+  border: none;
+  border-radius: 25px;
+  height: 35px;
+  width: 100px;
+}
+
+.errorContainer {
+  background-color: blueviolet;
+}
+
 .loader {
   animation: rotation 1s linear infinite;
   border: 5px solid #000;

@@ -1,0 +1,33 @@
+.container {
+  align-items: end;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 25px;
+}
+
+.selectContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 20px;
+}
+
+.select {
+  border-radius: 25px;
+  cursor: pointer;
+  height: 25px;
+  margin-top: 5px;
+  outline: none;
+  padding: 0 5px;
+  width: 110px;
+}
+
+.resetButton {
+  background-color: burlywood;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  height: 30px;
+  width: 100px;
+}

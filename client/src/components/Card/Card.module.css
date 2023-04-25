@@ -12,7 +12,6 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   transition: transform 0.2s ease-out;
   /* width: 350px; */
 }
@@ -22,12 +21,16 @@ a {
 }
 
 .image {
-  background-color: blue;
   max-height: 200px;
   max-width: 200px;
   object-fit: contain;
 }
 
+.typesContainer {
+  display: flex;
+  flex-direction: row;
+}
+
 .types {
-  background-color: red;
+  margin: 15px 20px;
 }
