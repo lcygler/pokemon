@@ -3,24 +3,9 @@ const validatePokemon = require("../utils/validators.js");
 
 const createHandler = async (req, res) => {
   try {
-    const { name, hp, attack, defense, speed, height, weight, image, types } = req.body;
-
-    const newPokemon = {
-      name,
-      hp,
-      attack,
-      defense,
-      speed,
-      height,
-      weight,
-      image,
-      types,
-    };
-
+    const newPokemon = req.body;
     validatePokemon(newPokemon);
-
     const createdPokemon = await createController(newPokemon);
-
     res.status(200).json(createdPokemon);
   } catch (error) {
     if (error.message === "Required fields missing" || error.message === "Pokemon already exists") {
