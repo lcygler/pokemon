@@ -6,7 +6,12 @@ const createPokemon = async (pokemon) => {
   const pokemonName = name.trim().toLowerCase();
 
   // Search pokemon in DB
-  let dbPokemon = await Pokemon.findOne({ where: { name: pokemonName } });
+  let dbPokemon = await Pokemon.findOne({
+    where: {
+      name: pokemonName,
+    },
+  });
+
   if (dbPokemon) {
     throw new Error("Pokemon already exists");
   }
