@@ -203,11 +203,13 @@ const Create = () => {
           <label htmlFor="type2">Type 2</label>
           <select id="type2" name="type2" value={formData.type2} onChange={handleChange}>
             <option value=""></option>
-            {types.map((element) => (
-              <option key={element.id} value={element.name}>
-                {element.name.charAt(0).toUpperCase() + element.name.slice(1)}
-              </option>
-            ))}
+            {types
+              .filter((element) => element.name !== "unknown")
+              .map((element) => (
+                <option key={element.id} value={element.name}>
+                  {element.name.charAt(0).toUpperCase() + element.name.slice(1)}
+                </option>
+              ))}
           </select>
           <small className={styles.error}>{errors.type2}</small>
         </div>

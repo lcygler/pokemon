@@ -67,6 +67,7 @@ export function validateForm(formData, errors, setErrors, allPokemons) {
   //* Type 2 (Optional)
   if (type2) {
     if (typeof type2 !== "string") newErrors.type2 = "Type 2 must be a string";
+    else if (type1 === "unknown") newErrors.type2 = "Type 2 cannot be set";
     else if (type2 === type1) newErrors.type2 = "Types must be different";
     else newErrors.type2 = "";
   }
