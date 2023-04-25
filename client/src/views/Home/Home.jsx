@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAll, getTypes } from "../../redux/actions";
+import { filterPokemons, getAll, getTypes } from "../../redux/actions";
 
-import { Cards, FilterAndOrder, SearchBar } from "../../components/index";
+import { Cards, FilterAndSort, SearchBar } from "../../components/index";
 import styles from "./Home.module.css";
 
 function Home() {
   const dispatch = useDispatch();
   const allPokemons = useSelector((state) => state.allPokemons);
+  const filteredPokemons = useSelector((state) => state.filteredPokemons);
   const [page, setPage] = useState(1);
 
   useEffect(() => {
@@ -15,9 +16,13 @@ function Home() {
     dispatch(getTypes());
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(filterPokemons());
+  }, [allPokemons]);
+
   const startIndex = (page - 1) * 12;
   const endIndex = startIndex + 12;
-  const currentPokemons = allPokemons.slice(startIndex, endIndex);
+  const currentPokemons = filteredPokemons.slice(startIndex, endIndex);
 
   const handleNextPage = () => {
     setPage((prevPage) => prevPage + 1);
@@ -27,13 +32,17 @@ function Home() {
     setPage((prevPage) => prevPage - 1);
   };
 
+  const resetPage = () => {
+    setPage(1);
+  };
+
   return (
     <div className={styles.home}>
       <div className={styles.nav}>
         <SearchBar />
       </div>
 
-      <FilterAndOrder />
+      <FilterAndSort resetPage={resetPage} />
 
       <Cards currentPokemons={currentPokemons} />
 
@@ -43,8 +52,8 @@ function Home() {
             Back
           </button>
         )}
-        {allPokemons.length > endIndex && (
-          // In the last page, endIndex = allPokemons.length so nextButton won't render
+        {filteredPokemons.length > endIndex && (
+          // In the last page, endIndex = filteredPokemons.length so nextButton won't render
           <button onClick={handleNextPage} className={styles.nextButton}>
             Next
           </button>

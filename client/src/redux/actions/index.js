@@ -1,16 +1,19 @@
 import axios from "axios";
 import { API_URL } from "../../utils/consts";
 
-export const CLEAR_DETAIL = "CLEAR_DETAIL";
-export const CREATE_POKEMON = "CREATE_POKEMON";
-export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN";
-export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
 export const GET_ALL = "GET_ALL";
 export const GET_BY_ID = "GET_BY_ID";
 export const GET_BY_NAME = "GET_BY_NAME";
 export const GET_TYPES = "GET_TYPES";
-export const ORDER_BY_ATTACK = "ORDER_BY_ATTACK";
-export const ORDER_BY_NAME = "ORDER_BY_NAME";
+
+export const CREATE_POKEMON = "CREATE_POKEMON";
+export const CLEAR_DETAIL = "CLEAR_DETAIL";
+
+export const FILTER_POKEMONS = "FILTER_POKEMONS";
+export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
+export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN";
+export const SORT_BY_NAME = "SORT_BY_NAME";
+export const SORT_BY_ATTACK = "SORT_BY_ATTACK";
 export const RESET_FILTERS = "RESET_FILTERS";
 
 export const getAll = () => {
@@ -100,32 +103,37 @@ export const clearDetail = () => {
   };
 };
 
-//* Filter and Order
-export const filterByOrigin = (selectedOrigin) => {
+export const filterPokemons = () => {
   return {
-    type: FILTER_BY_ORIGIN,
-    payload: selectedOrigin,
+    type: FILTER_POKEMONS,
   };
 };
 
-export const filterByType = (selectedType) => {
+export const filterByType = (type) => {
   return {
     type: FILTER_BY_TYPE,
-    payload: selectedType,
+    payload: type,
   };
 };
 
-export const orderByAttack = (selectedAttackOrder) => {
+export const filterByOrigin = (origin) => {
   return {
-    type: ORDER_BY_ATTACK,
-    payload: selectedAttackOrder,
+    type: FILTER_BY_ORIGIN,
+    payload: origin,
   };
 };
 
-export const orderByName = (selectedNameOrder) => {
+export const sortByName = (order) => {
   return {
-    type: ORDER_BY_NAME,
-    payload: selectedNameOrder,
+    type: SORT_BY_NAME,
+    payload: order,
+  };
+};
+
+export const sortByAttack = (order) => {
+  return {
+    type: SORT_BY_ATTACK,
+    payload: order,
   };
 };
 

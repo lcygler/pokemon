@@ -10,31 +10,33 @@ import styles from "./Detail.module.css";
 const Detail = () => {
   const dispatch = useDispatch();
   const { idOrName } = useParams();
-
   const [showError, setShowError] = useState(false);
-
-  useEffect(() => {
-    if (uuidRegex.test(idOrName) || !isNaN(idOrName)) {
-      dispatch(getById(idOrName));
-    } else if (typeof idOrName === "string") {
-      dispatch(getByName(idOrName));
-    }
-
-    return () => {
-      dispatch(clearDetail());
-    };
-  }, [dispatch, idOrName]);
 
   const selectedPokemon = useSelector((state) => state.selectedPokemon);
   const { id, name, image, hp, attack, defense, speed = null, height = null, weight = null, types } = selectedPokemon;
   const formattedName = name?.toUpperCase();
-  const formattedTypes = types?.map((element) => element.charAt(0).toUpperCase() + element.slice(1)).join(", ");
+  const formattedTypes = types?.map((element) => element.charAt(0).toUpperCase() + element.slice(1));
+  const [type1, type2] = formattedTypes || [];
+
+  const input = String(idOrName).trim();
+  const isUuid = uuidRegex.test(input);
+  const isNumber = !isNaN(Number(input));
+
+  useEffect(() => {
+    if (isUuid || isNumber) {
+      dispatch(getById(input));
+    } else if (typeof input === "string") {
+      dispatch(getByName(input));
+    }
+    return () => {
+      dispatch(clearDetail());
+    };
+  }, [dispatch, input, isUuid, isNumber]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowError(true);
-    }, 2000);
-
+    }, 3000);
     return () => {
       clearTimeout(timer);
     };
@@ -43,29 +45,39 @@ const Detail = () => {
   return (
     <div className={styles.container}>
       {name ? (
-        <div className={styles.textContainer}>
+        <div className={styles.cardContainer}>
           <h2 className={styles.name}>{formattedName}</h2>
 
-          <img src={image} alt="" className={styles.image} />
+          <div className={styles.propsContainer}>
+            <div className={styles.imageContainer}>
+              <img src={image} alt="" className={styles.image} />
+            </div>
 
-          <p className={styles.text}>ID: {id}</p>
-          <p className={styles.text}>Attack: {attack}</p>
-          <p className={styles.text}>Defense: {defense}</p>
+            <div className={styles.textContainer}>
+              <p className={styles.text}>ID: {id}</p>
+              <p className={styles.text}>HP: {hp}</p>
+              <p className={styles.text}>Attack: {attack}</p>
+              <p className={styles.text}>Defense: {defense}</p>
 
-          {speed && <p className={styles.text}>Speed: {hp}</p>}
-          {height && <p className={styles.text}>Height: {height}</p>}
-          {weight && <p className={styles.text}>Weight: {weight}</p>}
+              {speed > 0 && <p className={styles.text}>Speed: {speed}</p>}
+              {height > 0 && <p className={styles.text}>Height: {height}</p>}
+              {weight > 0 && <p className={styles.text}>Weight: {weight}</p>}
 
-          {formattedTypes && <p className={styles.text}>Type: {formattedTypes}</p>}
+              <p className={styles.text}>Type 1: {type1}</p>
+              {type2 && <p className={styles.text}>Type 2: {type2}</p>}
+            </div>
+          </div>
 
-          <Link to="/home" className={styles.link}>
-            <button className={styles.homeButton}>Home</button>
-          </Link>
+          <div className={styles.buttonContainer}>
+            <Link to="/home" className={styles.link}>
+              <button className={styles.homeButton}>Home</button>
+            </Link>
+          </div>
         </div>
       ) : (
         <>
           {showError ? (
-            <div>
+            <div className={styles.errorContainer}>
               <h3 className={styles.error}>Oops! Pokemon not found 👀</h3>
               <p className={styles.error}>Please check the spelling and try again</p>
               <Link to="/home" className={styles.link}>

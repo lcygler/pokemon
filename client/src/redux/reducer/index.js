@@ -3,21 +3,26 @@ import {
   CREATE_POKEMON,
   FILTER_BY_ORIGIN,
   FILTER_BY_TYPE,
+  FILTER_POKEMONS,
   GET_ALL,
   GET_BY_ID,
   GET_BY_NAME,
   GET_TYPES,
-  ORDER_BY_ATTACK,
-  ORDER_BY_NAME,
+  RESET_FILTERS,
+  SORT_BY_ATTACK,
+  SORT_BY_NAME,
 } from "../actions";
+
+import { filterByOrigin, filterByType, sortByAttack, sortByName } from "./helpers";
 
 const initialState = {
   allPokemons: [],
+  filteredPokemons: [],
   selectedPokemon: {},
   types: [],
   typeFilter: "All",
   originFilter: "All",
-  idOrder: "Default",
+  nameOrder: "Default",
   attackOrder: "Default",
 };
 
@@ -59,29 +64,65 @@ const rootReducer = (state = initialState, action) => {
         selectedPokemon: {},
       };
 
-    //* Filter and Order
-    case FILTER_BY_ORIGIN:
+    case FILTER_POKEMONS:
+      const pokemonsCopy = [...state.allPokemons];
+      const filteredPokemons = filterByType(filterByOrigin(pokemonsCopy, state.originFilter), state.typeFilter);
+      const sortedPokemons = sortByName(sortByAttack(filteredPokemons, state.attackOrder), state.nameOrder);
       return {
         ...state,
-        //
+        filteredPokemons: sortedPokemons,
       };
 
     case FILTER_BY_TYPE:
+      const pokemonsTypeCopy = [...state.allPokemons];
+      const filteredByType = filterByType(filterByOrigin(pokemonsTypeCopy, state.originFilter), action.payload);
+      const sortedType = sortByName(sortByAttack(filteredByType, state.attackOrder), state.nameOrder);
       return {
         ...state,
-        //
+        filteredPokemons: sortedType,
+        typeFilter: action.payload,
       };
 
-    case ORDER_BY_ATTACK:
+    case FILTER_BY_ORIGIN:
+      const pokemonsOriginCopy = [...state.allPokemons];
+      const filteredByOrigin = filterByOrigin(filterByType(pokemonsOriginCopy, state.typeFilter), action.payload);
+      const sortedOrigin = sortByName(sortByAttack(filteredByOrigin, state.attackOrder), state.nameOrder);
       return {
         ...state,
-        //
+        filteredPokemons: sortedOrigin,
+        originFilter: action.payload,
       };
 
-    case ORDER_BY_NAME:
+    case SORT_BY_NAME:
+      const pokemonsNameCopy = [...state.allPokemons];
+      const sortedByName = sortByName(pokemonsNameCopy, action.payload);
+      const filteredName = filterByType(filterByOrigin(sortedByName, state.originFilter), state.typeFilter);
       return {
         ...state,
-        //
+        filteredPokemons: filteredName,
+        nameOrder: action.payload,
+        attackOrder: "Default",
+      };
+
+    case SORT_BY_ATTACK:
+      const pokemonsAttackCopy = [...state.allPokemons];
+      const sortedByAttack = sortByAttack(pokemonsAttackCopy, action.payload);
+      const filteredAttack = filterByType(filterByOrigin(sortedByAttack, state.originFilter), state.typeFilter);
+      return {
+        ...state,
+        filteredPokemons: filteredAttack,
+        attackOrder: action.payload,
+        nameOrder: "Default",
+      };
+
+    case RESET_FILTERS:
+      return {
+        ...state,
+        filteredPokemons: state.allPokemons,
+        typeFilter: "All",
+        originFilter: "All",
+        nameOrder: "Default",
+        attackOrder: "Default",
       };
 
     default:
