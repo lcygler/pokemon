@@ -4,7 +4,7 @@ const createPokemon = async (pokemon) => {
   const { name, hp, attack, defense, speed, height, weight, image, types } = pokemon;
   const pokemonName = name.trim().toLowerCase();
 
-  // Search pokemon in DB
+  //* Find pokemon
   let dbPokemon = await Pokemon.findOne({
     where: {
       name: pokemonName,
@@ -17,7 +17,7 @@ const createPokemon = async (pokemon) => {
 
   const pokemonTypes = types.map((element) => element.trim().toLowerCase());
 
-  // Search types in DB
+  //* Search types
   const existingTypes = await Type.findAll({
     where: {
       name: pokemonTypes,
@@ -28,7 +28,7 @@ const createPokemon = async (pokemon) => {
     throw new Error("Invalid type");
   }
 
-  // Create pokemon in DB
+  //* Create pokemon
   const newPokemon = await Pokemon.create({
     name: pokemonName,
     hp,
@@ -40,9 +40,10 @@ const createPokemon = async (pokemon) => {
     image,
   });
 
-  // Add types to new pokemon
+  //* Add types
   await newPokemon.addTypes(existingTypes);
 
+  //* Return created pokemon
   const createdPokemon = await Pokemon.findOne({
     where: {
       id: newPokemon.id,

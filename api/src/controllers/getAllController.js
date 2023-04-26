@@ -3,7 +3,7 @@ const { API_URL } = require("../utils/consts.js");
 const axios = require("axios");
 
 const getAllPokemons = async () => {
-  // GET pokemons from API
+  //* GET pokemons from API
   const response = await axios.get(`${API_URL}/pokemon?limit=60`);
   const pokemons = response.data.results;
 
@@ -25,7 +25,7 @@ const getAllPokemons = async () => {
     })
   );
 
-  // GET pokemons from DB
+  //* GET pokemons from DB
   const dbPokemons = await Pokemon.findAll({
     include: {
       model: Type,
@@ -49,6 +49,7 @@ const getAllPokemons = async () => {
     };
   });
 
+  //* Return all pokemons
   const allPokemons = [...formattedDbPokemons, ...apiPokemons];
 
   return allPokemons;

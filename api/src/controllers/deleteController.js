@@ -6,16 +6,18 @@ const deleteController = async (idOrName) => {
   let dbPokemon, deletedPokemon;
 
   if (isUuid) {
+    //* Delete by UUID
     dbPokemon = await Pokemon.findByPk(idOrName);
 
     if (dbPokemon) {
-      deletedPokemon = { ...dbPokemon };
+      deletedPokemon = { ...dbPokemon.dataValues };
       await dbPokemon.destroy();
       return deletedPokemon;
     } else {
       throw new Error("Pokemon not found");
     }
   } else if (typeof idOrName === "string") {
+    //* Delete by Name
     const formattedName = idOrName.trim().toLowerCase();
 
     dbPokemon = await Pokemon.findOne({
@@ -25,7 +27,7 @@ const deleteController = async (idOrName) => {
     });
 
     if (dbPokemon) {
-      deletedPokemon = { ...dbPokemon };
+      deletedPokemon = { ...dbPokemon.dataValues };
       await dbPokemon.destroy();
       return deletedPokemon;
     } else {

@@ -3,7 +3,7 @@ const { API_URL } = require("../utils/consts.js");
 const axios = require("axios");
 
 const getPokemonByName = async (pokemonName) => {
-  // Search pokemon in DB
+  //* Find pokemon in DB
   const dbPokemon = await Pokemon.findOne({
     where: {
       name: pokemonName,
@@ -13,7 +13,6 @@ const getPokemonByName = async (pokemonName) => {
     },
   });
 
-  // Pokemon exists in DB
   if (dbPokemon) {
     return {
       id: dbPokemon.id,
@@ -29,7 +28,7 @@ const getPokemonByName = async (pokemonName) => {
     };
   }
 
-  // GET pokemon from API
+  //* GET pokemon from API
   try {
     const response = await axios.get(`${API_URL}/pokemon/${pokemonName}`);
     const pokemon = {
