@@ -1,10 +1,10 @@
 const createController = require("../controllers/createController.js");
-const validatePokemon = require("../utils/validators.js");
+const { createValidate } = require("../utils/validators.js");
 
 const createHandler = async (req, res) => {
   try {
     const newPokemon = req.body;
-    validatePokemon(newPokemon);
+    createValidate(newPokemon);
     const createdPokemon = await createController(newPokemon);
     res.status(200).json(createdPokemon);
   } catch (error) {
@@ -12,6 +12,7 @@ const createHandler = async (req, res) => {
       res.status(404).json({ error: error.message });
     } else if (
       error.message === "Name and image must be strings" ||
+      error.message === "Image must be a valid URL" ||
       error.message === "Types must be strings" ||
       error.message === "Invalid type" ||
       error.message === "HP, attack, defense, speed, height and weight must be integers"
