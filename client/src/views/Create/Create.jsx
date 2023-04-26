@@ -226,7 +226,7 @@ const Create = () => {
                 Image
               </label>
               <input
-                type="text"
+                type="url"
                 id="image"
                 name="image"
                 value={formData.image}
