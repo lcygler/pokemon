@@ -8,7 +8,7 @@ export function validateForm(formData, errors, setErrors, allPokemons) {
   if (!name) newErrors.name = "Name cannot be empty";
   else if (typeof name !== "string") newErrors.name = "Name must be string";
   else if (!lettersRegex.test(name)) newErrors.name = "Name must only contain letters";
-  else if (name.length < 4) newErrors.name = "Name must have at least 4 characters";
+  else if (name.length < 4) newErrors.name = "Name is too short";
   else if (allPokemons?.some((element) => element.name === name.trim().toLowerCase()))
     newErrors.name = "Name already in use";
   else newErrors.name = "";
