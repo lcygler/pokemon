@@ -1,19 +1,19 @@
 a {
-  color: inherit;
+  color: #f2f2f2;
   text-decoration: none;
 }
 
 .container {
   align-items: center;
-  background-color: antiquewhite;
-  border: 1px solid grey;
-  border-radius: 25px;
+  background-color: #00000050;
+  border: none;
+  border-radius: 50px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  height: 330px;
   justify-content: center;
   transition: transform 0.2s ease-out;
-  /* width: 350px; */
 }
 
 .container:hover {
@@ -32,5 +32,5 @@ a {
 }
 
 .types {
-  margin: 15px 20px;
+  margin: 20px 40px;
 }

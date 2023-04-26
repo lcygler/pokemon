@@ -1,63 +1,68 @@
 .container {
-  background-color: bisque;
+  background: linear-gradient(-45deg, #a80d0d, #0d9fa8);
+  color: #f2f2f2;
   display: grid;
   height: 100vh;
-  /* margin: 0;
-  padding: 0; */
   place-items: center;
-  /* width: 100vw; */
+}
+
+.cardContainer {
+  background-color: #00000050;
+  border: none;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  height: 650px;
 }
 
 .name {
   align-items: center;
-  background-color: rgb(219, 157, 76);
   display: flex;
   flex-direction: row;
   flex-grow: 1;
+  font-size: 2.25rem;
   justify-content: center;
 }
 
-.cardContainer {
-  background-color: burlywood;
-  border: 1px solid grey;
-  border-radius: 25px;
-  display: flex;
-  flex-direction: column;
-  height: 650px;
-  /* overflow: auto; */
-  width: 500px;
-}
-
 .propsContainer {
-  /* background-color: aquamarine; */
+  align-items: center;
   display: flex;
   flex-direction: row;
-}
-
-.imageContainer {
-  /* background-color: aqua; */
-  height: 100%;
-  padding-left: 10px;
-  width: 60%;
+  justify-content: center;
+  margin: 0 50px;
 }
 
 .image {
-  height: 100%;
+  max-height: 350px;
+  max-width: 350px;
   object-fit: contain;
-  width: 100%;
+  width: 80%;
 }
 
 .textContainer {
-  align-items: center;
-  /* background-color: blue; */
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
-  width: 40%;
+  margin-left: 20px;
+}
+
+.textRow {
+  display: flex;
+}
+
+.text {
+  background-color: #6bc09e;
+  border-radius: 25px;
+  color: black;
+  height: 40px;
+  line-height: 40px;
+  margin-right: 10px;
+  padding: 0 15px;
+  white-space: nowrap;
 }
 
 .buttonContainer {
   align-items: center;
-  /* background-color: brown; */
   display: flex;
   flex-direction: row;
   flex-grow: 1;
@@ -65,14 +70,36 @@
 }
 
 .homeButton {
+  background-color: #2ecc71;
   border: none;
   border-radius: 25px;
-  height: 35px;
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+  height: 40px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   width: 100px;
 }
 
+.homeButton:hover {
+  background-color: #27ae60;
+  color: white;
+}
+
 .errorContainer {
-  background-color: blueviolet;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.error1 {
+  font-size: 2.5rem;
+}
+
+.error2 {
+  font-size: 1.5rem;
+  margin-bottom: 50px;
 }
 
 .loader {

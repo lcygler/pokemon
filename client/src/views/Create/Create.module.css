@@ -1,3 +1,88 @@
+.container {
+  align-items: center;
+  background: linear-gradient(-45deg, #a80d0d, #0d9fa8);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+.title {
+  color: #f2f2f2;
+  font-size: 2rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.group1,
+.group2 {
+  display: flex;
+  flex-direction: row;
+}
+
+.item {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+}
+
+small {
+  margin-bottom: 10px;
+}
+
+.label {
+  color: #f2f2f2;
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.input,
+.select {
+  border: none;
+  border-radius: 25px;
+  height: 40px;
+  margin-bottom: 5px;
+  margin-right: 40px;
+  outline: none;
+  padding: 0 10px;
+  width: 150px;
+}
+
+.select {
+  width: 170px;
+}
+
 .error {
-  color: red;
+  color: yellow;
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.createButton,
+.homeButton {
+  background-color: #2ecc71;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  font-size: 0.9rem;
+  height: 40px;
+  margin: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  width: 100px;
+}
+
+.createButton:hover,
+.homeButton:hover {
+  background-color: #27ae60;
+  cursor: pointer;
 }
