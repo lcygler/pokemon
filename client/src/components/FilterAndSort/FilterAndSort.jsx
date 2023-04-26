@@ -23,29 +23,32 @@ function FilterAndSort({ resetPage }) {
     filterByOriginSelect.current.value = originFilter;
     sortByNameSelect.current.value = nameOrder;
     sortByAttackSelect.current.value = attackOrder;
-    resetPage();
   }, [typeFilter, originFilter, nameOrder, attackOrder]);
 
   const handleFilterByType = (e) => {
     const selectedType = e.target.value;
     dispatch(filterByType(selectedType));
+    resetPage();
   };
 
   const handleFilterByOrigin = (e) => {
     const selectedOrigin = e.target.value;
     dispatch(filterByOrigin(selectedOrigin));
+    resetPage();
   };
 
   const handleSortByName = (e) => {
     const selectedOrder = e.target.value;
     dispatch(sortByName(selectedOrder));
     sortByAttackSelect.current.value = "Default";
+    resetPage();
   };
 
   const handleSortByAttack = (e) => {
     const selectedOrder = e.target.value;
     dispatch(sortByAttack(selectedOrder));
     sortByNameSelect.current.value = "Default";
+    resetPage();
   };
 
   const handleReset = () => {

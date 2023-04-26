@@ -1,5 +1,5 @@
 .container {
-  align-items: end;
+  align-items: flex-end;
   display: flex;
   flex-direction: row;
   margin-bottom: 25px;
