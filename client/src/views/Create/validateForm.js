@@ -39,25 +39,19 @@ export function validateForm(formData, errors, setErrors, allPokemons) {
   else newErrors.defense = "";
 
   //* Speed (Optional)
-  if (speed) {
-    if (!Number.isInteger(Number(speed))) newErrors.speed = "Speed must be an integer";
-    else if (speed < 0 || speed > 255) newErrors.speed = "Speed must be 255 or less";
-    else newErrors.speed = "";
-  }
+  if (!Number.isInteger(Number(speed))) newErrors.speed = "Speed must be an integer";
+  else if (speed < 0 || speed > 255) newErrors.speed = "Speed must be 255 or less";
+  else newErrors.speed = "";
 
   //* Height (Optional)
-  if (height) {
-    if (!Number.isInteger(Number(height))) newErrors.height = "Height must be an integer";
-    else if (height < 0 || height > 14) newErrors.height = "Height must be 14 or less";
-    else newErrors.height = "";
-  }
+  if (!Number.isInteger(Number(height))) newErrors.height = "Height must be an integer";
+  else if (height < 0 || height > 14) newErrors.height = "Height must be 14 or less";
+  else newErrors.height = "";
 
   //* Weight (Optional)
-  if (weight) {
-    if (!Number.isInteger(Number(weight))) newErrors.weight = "Weight must be an integer";
-    else if (weight < 0 || weight > 1000) newErrors.weight = "Weight must be 1000 or less";
-    else newErrors.weight = "";
-  }
+  if (!Number.isInteger(Number(weight))) newErrors.weight = "Weight must be an integer";
+  else if (weight < 0 || weight > 1000) newErrors.weight = "Weight must be 1000 or less";
+  else newErrors.weight = "";
 
   //* Type 1
   if (!type1) newErrors.type1 = "Type 1 cannot be empty";
@@ -65,12 +59,10 @@ export function validateForm(formData, errors, setErrors, allPokemons) {
   else newErrors.type1 = "";
 
   //* Type 2 (Optional)
-  if (type2) {
-    if (typeof type2 !== "string") newErrors.type2 = "Type 2 must be a string";
-    else if (type1 === "unknown") newErrors.type2 = "Type 2 cannot be set";
-    else if (type2 === type1) newErrors.type2 = "Types must be different";
-    else newErrors.type2 = "";
-  }
+  if (typeof type2 !== "string") newErrors.type2 = "Type 2 must be a string";
+  else if (type1 === "unknown" && type2) newErrors.type2 = "Type 2 cannot be set";
+  else if (type2 === type1) newErrors.type2 = "Types must be different";
+  else newErrors.type2 = "";
 
   setErrors(newErrors);
 }
