@@ -104,119 +104,177 @@ const Create = () => {
   };
 
   return (
-    <div>
-      <h2>Create Pokemon</h2>
-      <form onChange={handleForm} onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Name</label>
-          <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} />
-          <small className={styles.error}>{errors.name}</small>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Create a Pokémon</h2>
+      <form onChange={handleForm} onSubmit={handleSubmit} className={styles.form}>
+        <div className={styles.formItems}>
+          <div className={styles.group1}>
+            <div className={styles.item}>
+              <label htmlFor="name" className={styles.label}>
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                className={styles.input}
+              />
+              <small className={styles.error}>{errors.name}</small>
+            </div>
+            <div className={styles.item}>
+              <label htmlFor="hp" className={styles.label}>
+                HP
+              </label>
+              <input
+                type="number"
+                id="hp"
+                name="hp"
+                min="0"
+                max="255"
+                value={formData.hp}
+                onChange={handleChange}
+                className={styles.input}
+              />
+              <small className={styles.error}>{errors.hp}</small>
+            </div>
+            <div className={styles.item}>
+              <label htmlFor="attack" className={styles.label}>
+                Attack
+              </label>
+              <input
+                type="number"
+                id="attack"
+                name="attack"
+                min="0"
+                max="255"
+                value={formData.attack}
+                onChange={handleChange}
+                className={styles.input}
+              />
+              <small className={styles.error}>{errors.attack}</small>
+            </div>
+            <div className={styles.item}>
+              <label htmlFor="defense" className={styles.label}>
+                Defense
+              </label>
+              <input
+                type="number"
+                id="defense"
+                name="defense"
+                min="0"
+                max="255"
+                value={formData.defense}
+                onChange={handleChange}
+                className={styles.input}
+              />
+              <small className={styles.error}>{errors.defense}</small>
+            </div>
+            <div className={styles.item}>
+              <label htmlFor="speed" className={styles.label}>
+                Speed
+              </label>
+              <input
+                type="number"
+                id="speed"
+                name="speed"
+                min="0"
+                max="255"
+                value={formData.speed}
+                onChange={handleChange}
+                className={styles.input}
+              />
+              <small className={styles.error}>{errors.speed}</small>
+            </div>
+          </div>
+          <div className={styles.group2}>
+            <div className={styles.item}>
+              <label htmlFor="height" className={styles.label}>
+                Height
+              </label>
+              <input
+                type="number"
+                id="height"
+                name="height"
+                min="1"
+                max="14"
+                value={formData.height}
+                onChange={handleChange}
+                className={styles.input}
+              />
+              <small className={styles.error}>{errors.height}</small>
+            </div>
+            <div className={styles.item}>
+              <label htmlFor="weight" className={styles.label}>
+                Weight
+              </label>
+              <input
+                type="number"
+                id="weight"
+                name="weight"
+                min="1"
+                max="999"
+                value={formData.weight}
+                onChange={handleChange}
+                className={styles.input}
+              />
+              <small className={styles.error}>{errors.weight}</small>
+            </div>
+            <div className={styles.item}>
+              <label htmlFor="image" className={styles.label}>
+                Image
+              </label>
+              <input
+                type="text"
+                id="image"
+                name="image"
+                value={formData.image}
+                onChange={handleChange}
+                className={styles.input}
+              />
+              <small className={styles.error}>{errors.image}</small>
+            </div>
+            <div className={styles.item}>
+              <label htmlFor="type1" className={styles.label}>
+                Type 1
+              </label>
+              <select id="type1" name="type1" value={formData.type1} onChange={handleChange} className={styles.select}>
+                <option value=""></option>
+                {types.map((element) => (
+                  <option key={element.id} value={element.name}>
+                    {element.name.charAt(0).toUpperCase() + element.name.slice(1)}
+                  </option>
+                ))}
+              </select>
+              <small className={styles.error}>{errors.type1}</small>
+            </div>
+            <div className={styles.item}>
+              <label htmlFor="type2" className={styles.label}>
+                Type 2
+              </label>
+              <select id="type2" name="type2" value={formData.type2} onChange={handleChange} className={styles.select}>
+                <option value=""></option>
+                {types
+                  .filter((element) => element.name !== "unknown")
+                  .map((element) => (
+                    <option key={element.id} value={element.name}>
+                      {element.name.charAt(0).toUpperCase() + element.name.slice(1)}
+                    </option>
+                  ))}
+              </select>
+              <small className={styles.error}>{errors.type2}</small>
+            </div>
+          </div>
         </div>
-        <div>
-          <label htmlFor="hp">HP</label>
-          <input type="number" id="hp" name="hp" min="0" max="255" value={formData.hp} onChange={handleChange} />
-          <small className={styles.error}>{errors.hp}</small>
+        <div className={styles.buttonsContainer}>
+          <button type="submit" className={styles.createButton}>
+            Create
+          </button>
+          <Link to="/home" className={styles.link}>
+            <button className={styles.homeButton}>Home</button>
+          </Link>
         </div>
-        <div>
-          <label htmlFor="attack">Attack</label>
-          <input
-            type="number"
-            id="attack"
-            name="attack"
-            min="0"
-            max="255"
-            value={formData.attack}
-            onChange={handleChange}
-          />
-          <small className={styles.error}>{errors.attack}</small>
-        </div>
-        <div>
-          <label htmlFor="defense">Defense:</label>
-          <input
-            type="number"
-            id="defense"
-            name="defense"
-            min="0"
-            max="255"
-            value={formData.defense}
-            onChange={handleChange}
-          />
-          <small className={styles.error}>{errors.defense}</small>
-        </div>
-        <div>
-          <label htmlFor="speed">Speed</label>
-          <input
-            type="number"
-            id="speed"
-            name="speed"
-            min="0"
-            max="255"
-            value={formData.speed}
-            onChange={handleChange}
-          />
-          <small className={styles.error}>{errors.speed}</small>
-        </div>
-        <div>
-          <label htmlFor="height">Height</label>
-          <input
-            type="number"
-            id="height"
-            name="height"
-            min="1"
-            max="14"
-            value={formData.height}
-            onChange={handleChange}
-          />
-          <small className={styles.error}>{errors.height}</small>
-        </div>
-        <div>
-          <label htmlFor="weight">Weight</label>
-          <input
-            type="number"
-            id="weight"
-            name="weight"
-            min="1"
-            max="999"
-            value={formData.weight}
-            onChange={handleChange}
-          />
-          <small className={styles.error}>{errors.weight}</small>
-        </div>
-        <div>
-          <label htmlFor="image">Image</label>
-          <input type="text" id="image" name="image" value={formData.image} onChange={handleChange} />
-          <small className={styles.error}>{errors.image}</small>
-        </div>
-        <div>
-          <label htmlFor="type1">Type 1</label>
-          <select id="type1" name="type1" value={formData.type1} onChange={handleChange}>
-            <option value=""></option>
-            {types.map((element) => (
-              <option key={element.id} value={element.name}>
-                {element.name.charAt(0).toUpperCase() + element.name.slice(1)}
-              </option>
-            ))}
-          </select>
-          <small className={styles.error}>{errors.type1}</small>
-        </div>
-        <div>
-          <label htmlFor="type2">Type 2</label>
-          <select id="type2" name="type2" value={formData.type2} onChange={handleChange}>
-            <option value=""></option>
-            {types
-              .filter((element) => element.name !== "unknown")
-              .map((element) => (
-                <option key={element.id} value={element.name}>
-                  {element.name.charAt(0).toUpperCase() + element.name.slice(1)}
-                </option>
-              ))}
-          </select>
-          <small className={styles.error}>{errors.type2}</small>
-        </div>
-        <button type="submit">Create</button>
-        <Link to="/home" className={styles.link}>
-          <button className={styles.homeButton}>Home</button>
-        </Link>
       </form>
     </div>
   );

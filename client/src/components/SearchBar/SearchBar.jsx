@@ -36,7 +36,7 @@ function SearchBar() {
         type="search"
         value={idOrName}
         className={styles.input}
-        placeholder="Search for a pokemon..."
+        placeholder="Search for a pokémon..."
         onChange={handleChange}
         onKeyDown={handleKeyPress}
       />
@@ -44,7 +44,7 @@ function SearchBar() {
         Search
       </button>
       <Link to="/create" className={styles.link}>
-        <span>Create</span>
+        <span>Create a Pokémon</span>
       </Link>
     </div>
   );

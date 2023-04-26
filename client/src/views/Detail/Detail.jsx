@@ -49,22 +49,30 @@ const Detail = () => {
           <h2 className={styles.name}>{formattedName}</h2>
 
           <div className={styles.propsContainer}>
-            <div className={styles.imageContainer}>
-              <img src={image} alt="" className={styles.image} />
-            </div>
+            {image && <img src={image} alt="" className={styles.image} />}
 
             <div className={styles.textContainer}>
               <p className={styles.text}>ID: {id}</p>
-              <p className={styles.text}>HP: {hp}</p>
-              <p className={styles.text}>Attack: {attack}</p>
-              <p className={styles.text}>Defense: {defense}</p>
 
-              {speed > 0 && <p className={styles.text}>Speed: {speed}</p>}
-              {height > 0 && <p className={styles.text}>Height: {height}</p>}
-              {weight > 0 && <p className={styles.text}>Weight: {weight}</p>}
+              <div className={styles.textRow}>
+                <p className={styles.text}>HP: {hp}</p>
+                {speed > 0 && <p className={styles.text}>Speed: {speed}</p>}
+              </div>
 
-              <p className={styles.text}>Type 1: {type1}</p>
-              {type2 && <p className={styles.text}>Type 2: {type2}</p>}
+              <div className={styles.textRow}>
+                <p className={styles.text}>Attack: {attack}</p>
+                <p className={styles.text}>Defense: {defense}</p>
+              </div>
+
+              <div className={styles.textRow}>
+                {height > 0 && <p className={styles.text}>Height: {height}</p>}
+                {weight > 0 && <p className={styles.text}>Weight: {weight}</p>}
+              </div>
+
+              <div className={styles.textRow}>
+                <p className={styles.text}>Type 1: {type1}</p>
+                {type2 && <p className={styles.text}>Type 2: {type2}</p>}
+              </div>
             </div>
           </div>
 
@@ -78,8 +86,8 @@ const Detail = () => {
         <>
           {showError ? (
             <div className={styles.errorContainer}>
-              <h3 className={styles.error}>Oops! Pokemon not found 👀</h3>
-              <p className={styles.error}>Please check the spelling and try again</p>
+              <h3 className={styles.error1}>Oops! Pokemon not found 👀</h3>
+              <p className={styles.error2}>Please check the spelling and try again</p>
               <Link to="/home" className={styles.link}>
                 <button className={styles.homeButton}>Home</button>
               </Link>

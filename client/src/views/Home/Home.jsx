@@ -38,7 +38,7 @@ function Home() {
 
   return (
     <div className={styles.home}>
-      <div className={styles.nav}>
+      <div className={styles.search}>
         <SearchBar />
       </div>
 
