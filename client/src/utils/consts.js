@@ -1,6 +1,3 @@
-//* API
-export const API_URL = "http://localhost:3001";
-
 //* Regex
 export const imageRegex = /\.(jpg|jpeg|png|gif|bmp)$/i;
 
