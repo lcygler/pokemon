@@ -18,7 +18,7 @@ function Home() {
 
   useEffect(() => {
     dispatch(filterPokemons());
-  }, [dispatch, allPokemons]);
+  }, [allPokemons]); //eslint-disable-line
 
   const startIndex = (page - 1) * 12;
   const endIndex = startIndex + 12;
