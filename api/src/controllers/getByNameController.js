@@ -1,5 +1,5 @@
+const API_URL = process.env.API_URL;
 const { Pokemon, Type } = require("../db.js");
-const { API_URL } = require("../utils/consts.js");
 const axios = require("axios");
 
 const getPokemonByName = async (pokemonName) => {
