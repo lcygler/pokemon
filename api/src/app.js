@@ -31,7 +31,7 @@ const allowedOrigins = process.env.ALLOWED_ORIGINS.split(",");
 server.use(
   cors({
     origin: allowedOrigins,
-    // credentials: true
+    credentials: true,
   })
 );
 
