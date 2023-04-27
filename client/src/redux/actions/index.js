@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_URL } from "../../utils/consts";
+const API_URL = process.env.REACT_APP_LOCAL_API_URL || process.env.REACT_APP_ONLINE_API_URL;
 
 export const GET_ALL = "GET_ALL";
 export const GET_BY_ID = "GET_BY_ID";
