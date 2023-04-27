@@ -1,11 +1,11 @@
 const patchController = require("../controllers/patchController.js");
-const { validateUpdate } = require("../utils/validators.js");
+const { patchValidate } = require("../utils/validators.js");
 
 const patchHandler = async (req, res) => {
   try {
     const { idPokemon } = req.params;
     const pokemon = req.body;
-    validateUpdate(idPokemon, pokemon);
+    patchValidate(idPokemon, pokemon);
     const updatedPokemon = await patchController(idPokemon, pokemon);
     res.status(200).json(updatedPokemon);
   } catch (error) {
