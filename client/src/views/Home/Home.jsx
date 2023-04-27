@@ -44,7 +44,13 @@ function Home() {
 
       <FilterAndSort resetPage={resetPage} />
 
-      <Cards currentPokemons={currentPokemons} />
+      {filteredPokemons.length ? (
+        <Cards currentPokemons={currentPokemons} />
+      ) : (
+        <div className={styles.loaderContainer}>
+          <span className={styles.loader}></span>
+        </div>
+      )}
 
       <div className={styles.pagination}>
         {page > 1 && (
