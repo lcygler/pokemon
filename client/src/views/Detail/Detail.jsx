@@ -36,7 +36,7 @@ const Detail = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowError(true);
-    }, 3000);
+    }, 5000);
     return () => {
       clearTimeout(timer);
     };
