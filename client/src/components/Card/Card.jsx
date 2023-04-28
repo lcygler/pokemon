@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styles from "./Card.module.css";
 
 function Card({ id, name, types, image }) {
-  const formattedName = name.toUpperCase();
+  const formattedName = name?.toUpperCase();
   const formattedTypes = types?.map((element) => element.charAt(0).toUpperCase() + element.slice(1));
   const [type1, type2] = formattedTypes || [];
 
