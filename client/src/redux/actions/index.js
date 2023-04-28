@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = process.env.REACT_APP_LOCAL_API_URL || process.env.REACT_APP_ONLINE_API_URL;
+const API_URL = process.env.REACT_APP_API_URL;
 
 export const GET_ALL = "GET_ALL";
 export const GET_BY_ID = "GET_BY_ID";
