@@ -12,7 +12,6 @@ const sequelize = new Sequelize(dbUrl, {
   dialectModule: pg, // Set the pg module as the dialectModule
   dialectOptions: {
     ssl: NODE_ENV === "production", // enable SSL only in production mode
-    rejectUnauthorized: false, // disable SSL verification
   },
 });
 
