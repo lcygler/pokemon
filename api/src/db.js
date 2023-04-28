@@ -9,7 +9,6 @@ const dbUrl = DB_URL ? DB_URL : `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
 const sequelize = new Sequelize(dbUrl, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-  ssl: NODE_ENV === "production", // enable SSL only in production mode
   dialectModule: pg, // Set the pg module as the dialectModule
   dialectOptions: {
     ssl: NODE_ENV === "production", // enable SSL only in production mode
