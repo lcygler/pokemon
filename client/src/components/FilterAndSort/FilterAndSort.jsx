@@ -73,7 +73,7 @@ function FilterAndSort({ resetPage }) {
           onChange={handleFilterByType}
           className={styles.select}
         >
-          <option value="All"></option>
+          <option value="All">All types</option>
           {types.map((type) => (
             <option key={type.id} value={type.name}>
               {type.name.charAt(0).toUpperCase() + type.name.slice(1)}
@@ -93,9 +93,9 @@ function FilterAndSort({ resetPage }) {
           onChange={handleFilterByOrigin}
           className={styles.select}
         >
-          <option value="All"></option>
+          <option value="All">All origins</option>
           <option value="API">API</option>
-          <option value="DB">DB</option>
+          <option value="Database">Database</option>
         </select>
       </div>
 
@@ -110,9 +110,9 @@ function FilterAndSort({ resetPage }) {
           onChange={handleSortByName}
           className={styles.select}
         >
-          <option value="Default"></option>
-          <option value="Ascending">Ascending</option>
-          <option value="Descending">Descending</option>
+          <option value="Default">Default</option>
+          <option value="A-Z">A-Z</option>
+          <option value="Z-A">Z-A</option>
         </select>
       </div>
 
@@ -127,9 +127,9 @@ function FilterAndSort({ resetPage }) {
           onChange={handleSortByAttack}
           className={styles.select}
         >
-          <option value="Default"></option>
-          <option value="Ascending">Ascending</option>
-          <option value="Descending">Descending</option>
+          <option value="Default">Default</option>
+          <option value="Low-High">Low-High</option>
+          <option value="High-Low">High-Low</option>
         </select>
       </div>
 

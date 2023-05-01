@@ -2,7 +2,7 @@ import { uuidRegex } from "../../utils/consts";
 
 export const sortByName = (pokemons, order) => {
   switch (order) {
-    case "Ascending":
+    case "A-Z":
       return pokemons.sort((a, b) => {
         if (a.name < b.name) {
           return -1;
@@ -12,7 +12,7 @@ export const sortByName = (pokemons, order) => {
           return 0;
         }
       });
-    case "Descending":
+    case "Z-A":
       return pokemons.sort((a, b) => {
         if (a.name < b.name) {
           return 1;
@@ -29,7 +29,7 @@ export const sortByName = (pokemons, order) => {
 
 export const sortByAttack = (pokemons, order) => {
   switch (order) {
-    case "Ascending":
+    case "Low-High":
       return pokemons.sort((a, b) => {
         if (a.attack < b.attack) {
           return -1;
@@ -39,7 +39,7 @@ export const sortByAttack = (pokemons, order) => {
           return 0;
         }
       });
-    case "Descending":
+    case "High-Low":
       return pokemons.sort((a, b) => {
         if (a.attack < b.attack) {
           return 1;
@@ -66,7 +66,7 @@ export const filterByOrigin = (pokemons, origin) => {
   switch (origin) {
     case "API":
       return pokemons.filter((pokemon) => !uuidRegex.test(pokemon.id));
-    case "DB":
+    case "Database":
       return pokemons.filter((pokemon) => uuidRegex.test(pokemon.id));
     default:
       return pokemons;
