@@ -134,7 +134,7 @@ function FilterAndSort({ changePage }) {
       </div>
 
       <button value="reset" onClick={handleReset} className={styles.resetButton}>
-        Reset filters
+        Reset
       </button>
     </div>
   );
