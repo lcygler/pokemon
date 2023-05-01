@@ -17,7 +17,7 @@ server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
 server.use(morgan("dev"));
 
-const allowedOrigins = process.env.ALLOWED_ORIGINS.split(",");
+const allowedOrigins = process.env.ALLOWED_ORIGINS.split(",") || "http://localhost:3000";
 
 server.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", allowedOrigins); // update to match the domain you will make the request from
