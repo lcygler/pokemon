@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterPokemons, getAll, getTypes } from "../../redux/actions";
+import { filterPokemons, getPokemons, getTypes } from "../../redux/actions";
 
 import { Cards, FilterAndSort, SearchBar } from "../../components/index";
 import styles from "./Home.module.css";
@@ -12,7 +12,7 @@ function Home() {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    dispatch(getAll());
+    dispatch(getPokemons());
     dispatch(getTypes());
   }, [dispatch]);
 

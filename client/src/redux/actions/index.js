@@ -1,7 +1,7 @@
 import axios from "axios";
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
 
-export const GET_ALL = "GET_ALL";
+export const GET_POKEMONS = "GET_POKEMONS";
 export const GET_BY_ID = "GET_BY_ID";
 export const GET_BY_NAME = "GET_BY_NAME";
 export const GET_TYPES = "GET_TYPES";
@@ -16,12 +16,12 @@ export const SORT_BY_NAME = "SORT_BY_NAME";
 export const SORT_BY_ATTACK = "SORT_BY_ATTACK";
 export const RESET_FILTERS = "RESET_FILTERS";
 
-export const getAll = () => {
+export const getPokemons = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`${API_URL}/pokemons`);
       dispatch({
-        type: GET_ALL,
+        type: GET_POKEMONS,
         payload: response.data,
       });
     } catch (error) {

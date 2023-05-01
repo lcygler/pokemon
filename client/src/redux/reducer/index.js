@@ -4,9 +4,9 @@ import {
   FILTER_BY_ORIGIN,
   FILTER_BY_TYPE,
   FILTER_POKEMONS,
-  GET_ALL,
   GET_BY_ID,
   GET_BY_NAME,
+  GET_POKEMONS,
   GET_TYPES,
   RESET_FILTERS,
   SORT_BY_ATTACK,
@@ -28,7 +28,7 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_ALL:
+    case GET_POKEMONS:
       return {
         ...state,
         allPokemons: action.payload,
