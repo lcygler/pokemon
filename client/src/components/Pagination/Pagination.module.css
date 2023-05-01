@@ -1,0 +1,42 @@
+.pagination {
+  display: flex;
+  flex-direction: row;
+  margin: 40px 0;
+}
+
+.prevPageButton,
+.nextPageButton,
+.firstPageButton,
+.lastPageButton,
+.pageButton,
+.activePageButton {
+  background-color: #2ecc71;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  flex-direction: row;
+  font-size: 1.2rem;
+  margin-left: 3px;
+  margin-right: 3px;
+  padding: 2px 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.prevPageButton:hover,
+.nextPageButton:hover,
+.firstPageButton:hover,
+.lastPageButton:hover,
+.pageButton:hover {
+  background-color: #27ae60;
+  cursor: pointer;
+}
+
+.pageButton,
+.activePageButton {
+  font-size: 0.9rem;
+  padding: 2px 12px;
+}
+
+.activePageButton {
+  background-color: #229c56;
+}

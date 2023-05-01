@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filterPokemons, getPokemons, getTypes } from "../../redux/actions";
 
-import { Cards, FilterAndSort, SearchBar } from "../../components/index";
+import { Cards, FilterAndSort, Pagination, SearchBar } from "../../components/index";
 import styles from "./Home.module.css";
 
 function Home() {
@@ -20,20 +20,15 @@ function Home() {
     dispatch(filterPokemons());
   }, [allPokemons]); //eslint-disable-line
 
-  const startIndex = (page - 1) * 12;
-  const endIndex = startIndex + 12;
+  const itemsPerPage = 12;
+  const totalPages = Math.ceil(filteredPokemons.length / itemsPerPage);
+
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
   const currentPokemons = filteredPokemons.slice(startIndex, endIndex);
 
-  const handleNextPage = () => {
-    setPage((prevPage) => prevPage + 1);
-  };
-
-  const handlePrevPage = () => {
-    setPage((prevPage) => prevPage - 1);
-  };
-
-  const resetPage = () => {
-    setPage(1);
+  const changePage = (pageNumber) => {
+    setPage(pageNumber);
   };
 
   return (
@@ -42,29 +37,18 @@ function Home() {
         <SearchBar />
       </div>
 
-      <FilterAndSort resetPage={resetPage} />
+      <FilterAndSort changePage={changePage} />
 
       {filteredPokemons.length ? (
-        <Cards currentPokemons={currentPokemons} />
+        <>
+          <Cards currentPokemons={currentPokemons} />
+          <Pagination totalPages={totalPages} currentPage={page} changePage={changePage} />
+        </>
       ) : (
         <div className={styles.loaderContainer}>
           <span className={styles.loader}></span>
         </div>
       )}
-
-      <div className={styles.pagination}>
-        {page > 1 && (
-          <button onClick={handlePrevPage} className={styles.prevButton}>
-            Back
-          </button>
-        )}
-        {filteredPokemons.length > endIndex && (
-          // In the last page, endIndex = filteredPokemons.length so nextButton won't render
-          <button onClick={handleNextPage} className={styles.nextButton}>
-            Next
-          </button>
-        )}
-      </div>
     </div>
   );
 }

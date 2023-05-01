@@ -13,30 +13,6 @@
   margin-bottom: 25px;
 }
 
-.pagination {
-  margin: 40px 0;
-}
-
-.prevButton,
-.nextButton {
-  background-color: #2ecc71;
-  border: none;
-  border-radius: 25px;
-  color: white;
-  font-size: 0.9rem;
-  margin-left: 5px;
-  margin-right: 5px;
-  padding: 10px 25px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.prevButton,
-.nextButton:hover {
-  background-color: #27ae60;
-  color: white;
-  cursor: pointer;
-}
-
 .loaderContainer {
   align-items: center;
   display: flex;
