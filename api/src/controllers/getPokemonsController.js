@@ -2,7 +2,7 @@ const API_URL = process.env.API_URL;
 const { Pokemon, Type } = require("../db.js");
 const axios = require("axios");
 
-const getAllPokemons = async () => {
+const getPokemons = async () => {
   let apiPokemons;
   //* GET pokemons from API
   try {
@@ -60,4 +60,4 @@ const getAllPokemons = async () => {
   return allPokemons;
 };
 
-module.exports = getAllPokemons;
+module.exports = getPokemons;

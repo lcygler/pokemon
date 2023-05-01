@@ -1,6 +1,6 @@
 const { Router } = require("express");
 
-const getAllHandler = require("../handlers/getAllHandler.js");
+const getPokemonsHandler = require("../handlers/getPokemonsHandler.js");
 const getByIdHandler = require("../handlers/getByIdHandler.js");
 const getByNameHandler = require("../handlers/getByNameHandler.js");
 const createHandler = require("../handlers/createHandler.js");
@@ -10,7 +10,7 @@ const putHandler = require("../handlers/putHandler.js");
 
 const router = Router();
 
-router.get("/", getByNameHandler, getAllHandler);
+router.get("/", getByNameHandler, getPokemonsHandler);
 
 router.get("/:idPokemon", getByIdHandler);
 
