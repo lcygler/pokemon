@@ -4,7 +4,7 @@ import { filterByOrigin, filterByType, resetFilters, sortByAttack, sortByName } 
 
 import styles from "./FilterAndSort.module.css";
 
-function FilterAndSort({ resetPage }) {
+function FilterAndSort({ changePage }) {
   const dispatch = useDispatch();
 
   const types = useSelector((state) => state.types);
@@ -28,27 +28,27 @@ function FilterAndSort({ resetPage }) {
   const handleFilterByType = (e) => {
     const selectedType = e.target.value;
     dispatch(filterByType(selectedType));
-    resetPage();
+    changePage(1);
   };
 
   const handleFilterByOrigin = (e) => {
     const selectedOrigin = e.target.value;
     dispatch(filterByOrigin(selectedOrigin));
-    resetPage();
+    changePage(1);
   };
 
   const handleSortByName = (e) => {
     const selectedOrder = e.target.value;
     dispatch(sortByName(selectedOrder));
     sortByAttackSelect.current.value = "Default";
-    resetPage();
+    changePage(1);
   };
 
   const handleSortByAttack = (e) => {
     const selectedOrder = e.target.value;
     dispatch(sortByAttack(selectedOrder));
     sortByNameSelect.current.value = "Default";
-    resetPage();
+    changePage(1);
   };
 
   const handleReset = () => {
@@ -57,7 +57,7 @@ function FilterAndSort({ resetPage }) {
     filterByOriginSelect.current.value = "All";
     sortByNameSelect.current.value = "Default";
     sortByAttackSelect.current.value = "Default";
-    resetPage();
+    changePage(1);
   };
 
   return (
