@@ -45,9 +45,7 @@ function Home() {
           <Pagination totalPages={totalPages} currentPage={page} changePage={changePage} />
         </>
       ) : (
-        <div className={styles.loaderContainer}>
-          <span className={styles.loader}></span>
-        </div>
+        <p className={styles.error}>No results found for the selected filters</p>
       )}
     </div>
   );
