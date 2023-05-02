@@ -1,3 +1,23 @@
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  animation: rotation 1s linear infinite;
+  border: 5px solid #fff;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  box-sizing: border-box;
+  display: inline-block;
+  height: 48px;
+  width: 48px;
+}
+
 .container {
   background: linear-gradient(-45deg, #a80d0d, #0d9fa8);
   color: #f2f2f2;
@@ -101,24 +121,4 @@
 .error2 {
   font-size: 1.5rem;
   margin-bottom: 35px;
-}
-
-.loader {
-  animation: rotation 1s linear infinite;
-  border: 5px solid #fff;
-  border-bottom-color: transparent;
-  border-radius: 50%;
-  box-sizing: border-box;
-  display: inline-block;
-  height: 48px;
-  width: 48px;
-}
-
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
