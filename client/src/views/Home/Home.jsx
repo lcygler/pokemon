@@ -10,6 +10,8 @@ function Home() {
   const allPokemons = useSelector((state) => state.allPokemons);
   const filteredPokemons = useSelector((state) => state.filteredPokemons);
   const [page, setPage] = useState(1);
+  const [pokemonsPerPage] = useState(12);
+  const [showError, setShowError] = useState(false);
 
   useEffect(() => {
     dispatch(getPokemons());
@@ -20,11 +22,18 @@ function Home() {
     dispatch(filterPokemons());
   }, [allPokemons]); //eslint-disable-line
 
-  const itemsPerPage = 12;
-  const totalPages = Math.ceil(filteredPokemons.length / itemsPerPage);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowError(true);
+    }, 10000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
 
-  const startIndex = (page - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
+  const totalPages = Math.ceil(filteredPokemons.length / pokemonsPerPage);
+  const startIndex = (page - 1) * pokemonsPerPage;
+  const endIndex = startIndex + pokemonsPerPage;
   const currentPokemons = filteredPokemons.slice(startIndex, endIndex);
 
   const changePage = (pageNumber) => {
@@ -39,13 +48,30 @@ function Home() {
 
       <FilterAndSort changePage={changePage} />
 
-      {filteredPokemons.length ? (
+      {!allPokemons.length ? (
+        <>
+          {showError ? (
+            <div className={styles.refreshContainer}>
+              <p className={styles.error}>Error loading data. Please try again</p>
+              <button onClick={() => window.location.reload()} className={styles.refreshButton}>
+                Refresh
+              </button>
+            </div>
+          ) : (
+            <div className={styles.loaderContainer}>
+              <span className={styles.loader}></span>
+            </div>
+          )}
+        </>
+      ) : !filteredPokemons.length ? (
+        <div className={styles.errorContainer}>
+          <p className={styles.error}>No results found for the selected filters</p>
+        </div>
+      ) : (
         <>
           <Cards currentPokemons={currentPokemons} />
           <Pagination totalPages={totalPages} currentPage={page} changePage={changePage} />
         </>
-      ) : (
-        <p className={styles.error}>No results found for the selected filters</p>
       )}
     </div>
   );
