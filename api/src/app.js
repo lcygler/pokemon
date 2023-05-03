@@ -12,7 +12,7 @@ server.name = "API";
 
 server.use(morgan("dev"));
 
-const allowedOrigins = (process.env.ALLOWED_ORIGINS || "http://localhost:3000").split(",");
+const allowedOrigins = process.env.ALLOWED_ORIGINS || "http://localhost:3000";
 
 server.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", allowedOrigins);
