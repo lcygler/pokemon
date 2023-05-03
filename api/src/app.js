@@ -12,10 +12,10 @@ server.name = "API";
 
 server.use(morgan("dev"));
 
-const allowedOrigins = process.env.ALLOWED_ORIGINS || "http://localhost:3000";
+const origin = process.env.ORIGIN || "http://localhost:3000";
 
 server.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", allowedOrigins);
+  res.header("Access-Control-Allow-Origin", origin);
   res.header("Access-Control-Allow-Credentials", "true");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS");
