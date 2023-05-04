@@ -64,6 +64,7 @@ const rootReducer = (state = initialState, action) => {
         selectedPokemon: {},
       };
 
+    // prettier-ignore
     case FILTER_POKEMONS:
       const pokemonsCopy = [...state.allPokemons];
 
@@ -82,6 +83,7 @@ const rootReducer = (state = initialState, action) => {
         filteredPokemons: sortedPokemons,
       };
 
+    // prettier-ignore
     case FILTER_BY_TYPE:
       const pokemonsTypeCopy = [...state.allPokemons];
 
@@ -101,6 +103,7 @@ const rootReducer = (state = initialState, action) => {
         typeFilter: action.payload,
       };
 
+    // prettier-ignore
     case FILTER_BY_ORIGIN:
       const pokemonsOriginCopy = [...state.allPokemons];
 
@@ -120,6 +123,7 @@ const rootReducer = (state = initialState, action) => {
         originFilter: action.payload,
       };
 
+    // prettier-ignore
     case SORT_BY_NAME:
       const pokemonsNameCopy = [...state.allPokemons];
       const sortedByName = sortByName(pokemonsNameCopy, action.payload);
@@ -136,6 +140,7 @@ const rootReducer = (state = initialState, action) => {
         attackOrder: "Default",
       };
 
+    // prettier-ignore
     case SORT_BY_ATTACK:
       const pokemonsAttackCopy = [...state.allPokemons];
       const sortedByAttack = sortByAttack(pokemonsAttackCopy, action.payload);

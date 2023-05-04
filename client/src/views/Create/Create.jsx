@@ -123,6 +123,7 @@ const Create = () => {
               />
               <small className={styles.error}>{errors.name}</small>
             </div>
+
             <div className={styles.item}>
               <label htmlFor="hp" className={styles.label}>
                 HP
@@ -139,6 +140,7 @@ const Create = () => {
               />
               <small className={styles.error}>{errors.hp}</small>
             </div>
+
             <div className={styles.item}>
               <label htmlFor="attack" className={styles.label}>
                 Attack
@@ -155,6 +157,7 @@ const Create = () => {
               />
               <small className={styles.error}>{errors.attack}</small>
             </div>
+
             <div className={styles.item}>
               <label htmlFor="defense" className={styles.label}>
                 Defense
@@ -171,6 +174,7 @@ const Create = () => {
               />
               <small className={styles.error}>{errors.defense}</small>
             </div>
+
             <div className={styles.item}>
               <label htmlFor="speed" className={styles.label}>
                 Speed
@@ -188,6 +192,7 @@ const Create = () => {
               <small className={styles.error}>{errors.speed}</small>
             </div>
           </div>
+
           <div className={styles.group2}>
             <div className={styles.item}>
               <label htmlFor="height" className={styles.label}>
@@ -205,6 +210,7 @@ const Create = () => {
               />
               <small className={styles.error}>{errors.height}</small>
             </div>
+
             <div className={styles.item}>
               <label htmlFor="weight" className={styles.label}>
                 Weight
@@ -221,6 +227,7 @@ const Create = () => {
               />
               <small className={styles.error}>{errors.weight}</small>
             </div>
+
             <div className={styles.item}>
               <label htmlFor="image" className={styles.label}>
                 Image
@@ -235,6 +242,7 @@ const Create = () => {
               />
               <small className={styles.error}>{errors.image}</small>
             </div>
+
             <div className={styles.item}>
               <label htmlFor="type1" className={styles.label}>
                 Type 1
@@ -249,6 +257,7 @@ const Create = () => {
               </select>
               <small className={styles.error}>{errors.type1}</small>
             </div>
+
             <div className={styles.item}>
               <label htmlFor="type2" className={styles.label}>
                 Type 2
@@ -267,6 +276,7 @@ const Create = () => {
             </div>
           </div>
         </div>
+
         <div className={styles.buttonsContainer}>
           <button type="submit" className={styles.createButton}>
             Create

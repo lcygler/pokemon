@@ -40,6 +40,7 @@ function Pagination({ totalPages, currentPage, changePage }) {
       <button onClick={() => changePage(1)} className={styles.firstPageButton} title="First">
         &laquo;
       </button>
+
       <button onClick={handlePrevPage} className={styles.prevPageButton} title="Prev">
         &lsaquo;
       </button>
@@ -59,6 +60,7 @@ function Pagination({ totalPages, currentPage, changePage }) {
       <button onClick={handleNextPage} className={styles.nextPageButton} title="Next">
         &rsaquo;
       </button>
+
       <button onClick={() => changePage(totalPages)} className={styles.lastPageButton} title="Last">
         &raquo;
       </button>
