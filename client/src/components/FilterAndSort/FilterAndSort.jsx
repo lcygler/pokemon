@@ -33,9 +33,9 @@ function FilterAndSort({ changePage }) {
 
   const handleFilters = (e) => {
     const { name: selectName, value: selectValue } = e.target;
-    if (selectName === "typeFilter") {
+    if (selectName === "typeSelect") {
       dispatch(updateTypeFilter(selectValue));
-    } else if (selectName === "originFilter") {
+    } else if (selectName === "originSelect") {
       dispatch(updateOriginFilter(selectValue));
     } else if (selectName === "nameSelect") {
       dispatch(updateNameOrder(selectValue));
