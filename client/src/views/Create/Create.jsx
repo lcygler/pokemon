@@ -108,7 +108,7 @@ const Create = () => {
       <h2 className={styles.title}>Create a Pokémon</h2>
       <form onChange={handleForm} onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.formItems}>
-          <div className={styles.group1}>
+          <div className={styles.itemGroup1}>
             <div className={styles.item}>
               <label htmlFor="name" className={styles.label}>
                 Name
@@ -193,7 +193,7 @@ const Create = () => {
             </div>
           </div>
 
-          <div className={styles.group2}>
+          <div className={styles.itemGroup2}>
             <div className={styles.item}>
               <label htmlFor="height" className={styles.label}>
                 Height

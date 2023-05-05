@@ -18,8 +18,8 @@
   flex-direction: column;
 }
 
-.group1,
-.group2 {
+.itemGroup1,
+.itemGroup2 {
   display: flex;
   flex-direction: row;
 }
