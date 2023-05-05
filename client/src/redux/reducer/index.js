@@ -1,8 +1,6 @@
 import {
   CLEAR_DETAIL,
   CREATE_POKEMON,
-  FILTER_BY_ORIGIN,
-  FILTER_BY_TYPE,
   FILTER_POKEMONS,
   GET_BY_ID,
   GET_BY_NAME,
@@ -10,8 +8,10 @@ import {
   GET_TYPES,
   RESET_FILTERS,
   SET_CURRENT_PAGE,
-  SORT_BY_ATTACK,
-  SORT_BY_NAME,
+  UPDATE_ATTACK_ORDER,
+  UPDATE_NAME_ORDER,
+  UPDATE_ORIGIN_FILTER,
+  UPDATE_TYPE_FILTER,
 } from "../actions";
 
 import { filterByOrigin, filterByType, sortByAttack, sortByName } from "./helpers";
@@ -67,89 +67,51 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case FILTER_POKEMONS:
-      const pokemonsCopy = [...state.allPokemons];
+      let filteredSorted = [...state.allPokemons];
 
-      const filteredPokemons = filterByType(
-        filterByOrigin(pokemonsCopy, state.originFilter),
-        state.typeFilter
-      );
+      if (state.typeFilter !== "All") {
+        filteredSorted = filterByType(filteredSorted, state.typeFilter);
+      }
 
-      const sortedPokemons = sortByName(
-        sortByAttack(filteredPokemons, state.attackOrder),
-        state.nameOrder
-      );
+      if (state.originFilter !== "All") {
+        filteredSorted = filterByOrigin(filteredSorted, state.originFilter);
+      }
+
+      if (state.attackOrder !== "Default") {
+        filteredSorted = sortByAttack(filteredSorted, state.attackOrder);
+      }
+
+      if (state.nameOrder !== "Default") {
+        filteredSorted = sortByName(filteredSorted, state.nameOrder);
+      }
 
       return {
         ...state,
-        filteredPokemons: sortedPokemons,
+        filteredPokemons: filteredSorted,
       };
 
-    case FILTER_BY_TYPE:
-      const pokemonsTypeCopy = [...state.allPokemons];
-
-      const filteredByType = filterByType(
-        filterByOrigin(pokemonsTypeCopy, state.originFilter),
-        action.payload
-      );
-
-      const sortedType = sortByName(
-        sortByAttack(filteredByType, state.attackOrder),
-        state.nameOrder
-      );
-
+    case UPDATE_TYPE_FILTER:
       return {
         ...state,
-        filteredPokemons: sortedType,
         typeFilter: action.payload,
       };
 
-    case FILTER_BY_ORIGIN:
-      const pokemonsOriginCopy = [...state.allPokemons];
-
-      const filteredByOrigin = filterByOrigin(
-        filterByType(pokemonsOriginCopy, state.typeFilter),
-        action.payload
-      );
-
-      const sortedOrigin = sortByName(
-        sortByAttack(filteredByOrigin, state.attackOrder),
-        state.nameOrder
-      );
-
+    case UPDATE_ORIGIN_FILTER:
       return {
         ...state,
-        filteredPokemons: sortedOrigin,
         originFilter: action.payload,
       };
 
-    case SORT_BY_NAME:
-      const pokemonsNameCopy = [...state.allPokemons];
-      const sortedByName = sortByName(pokemonsNameCopy, action.payload);
-
-      const filteredName = filterByType(
-        filterByOrigin(sortedByName, state.originFilter),
-        state.typeFilter
-      );
-
+    case UPDATE_NAME_ORDER:
       return {
         ...state,
-        filteredPokemons: filteredName,
         nameOrder: action.payload,
         attackOrder: "Default",
       };
 
-    case SORT_BY_ATTACK:
-      const pokemonsAttackCopy = [...state.allPokemons];
-      const sortedByAttack = sortByAttack(pokemonsAttackCopy, action.payload);
-
-      const filteredAttack = filterByType(
-        filterByOrigin(sortedByAttack, state.originFilter),
-        state.typeFilter
-      );
-
+    case UPDATE_ATTACK_ORDER:
       return {
         ...state,
-        filteredPokemons: filteredAttack,
         attackOrder: action.payload,
         nameOrder: "Default",
       };
@@ -157,7 +119,6 @@ const rootReducer = (state = initialState, action) => {
     case RESET_FILTERS:
       return {
         ...state,
-        filteredPokemons: state.allPokemons,
         typeFilter: "All",
         originFilter: "All",
         nameOrder: "Default",

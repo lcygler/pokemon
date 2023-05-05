@@ -10,10 +10,10 @@ export const CREATE_POKEMON = "CREATE_POKEMON";
 export const CLEAR_DETAIL = "CLEAR_DETAIL";
 
 export const FILTER_POKEMONS = "FILTER_POKEMONS";
-export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
-export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN";
-export const SORT_BY_NAME = "SORT_BY_NAME";
-export const SORT_BY_ATTACK = "SORT_BY_ATTACK";
+export const UPDATE_TYPE_FILTER = "UPDATE_TYPE_FILTER";
+export const UPDATE_ORIGIN_FILTER = "UPDATE_ORIGIN_FILTER";
+export const UPDATE_NAME_ORDER = "UPDATE_NAME_ORDER";
+export const UPDATE_ATTACK_ORDER = "UPDATE_ATTACK_ORDER";
 export const RESET_FILTERS = "RESET_FILTERS";
 
 export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
@@ -111,30 +111,30 @@ export const filterPokemons = () => {
   };
 };
 
-export const filterByType = (type) => {
+export const updateTypeFilter = (type) => {
   return {
-    type: FILTER_BY_TYPE,
+    type: UPDATE_TYPE_FILTER,
     payload: type,
   };
 };
 
-export const filterByOrigin = (origin) => {
+export const updateOriginFilter = (origin) => {
   return {
-    type: FILTER_BY_ORIGIN,
+    type: UPDATE_ORIGIN_FILTER,
     payload: origin,
   };
 };
 
-export const sortByName = (order) => {
+export const updateNameOrder = (order) => {
   return {
-    type: SORT_BY_NAME,
+    type: UPDATE_NAME_ORDER,
     payload: order,
   };
 };
 
-export const sortByAttack = (order) => {
+export const updateAttackOrder = (order) => {
   return {
-    type: SORT_BY_ATTACK,
+    type: UPDATE_ATTACK_ORDER,
     payload: order,
   };
 };

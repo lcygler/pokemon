@@ -1,11 +1,12 @@
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  filterByOrigin,
-  filterByType,
+  filterPokemons,
   resetFilters,
-  sortByAttack,
-  sortByName,
+  updateAttackOrder,
+  updateNameOrder,
+  updateOriginFilter,
+  updateTypeFilter,
 } from "../../redux/actions";
 import styles from "./FilterAndSort.module.css";
 
@@ -18,60 +19,50 @@ function FilterAndSort({ changePage }) {
   const nameOrder = useSelector((state) => state.nameOrder);
   const attackOrder = useSelector((state) => state.attackOrder);
 
-  const filterByTypeSelect = useRef(null);
-  const filterByOriginSelect = useRef(null);
-  const sortByNameSelect = useRef(null);
-  const sortByAttackSelect = useRef(null);
+  const typeSelect = useRef(null);
+  const originSelect = useRef(null);
+  const nameSelect = useRef(null);
+  const attackSelect = useRef(null);
 
   useEffect(() => {
-    filterByTypeSelect.current.value = typeFilter;
-    filterByOriginSelect.current.value = originFilter;
-    sortByNameSelect.current.value = nameOrder;
-    sortByAttackSelect.current.value = attackOrder;
+    typeSelect.current.value = typeFilter;
+    originSelect.current.value = originFilter;
+    nameSelect.current.value = nameOrder;
+    attackSelect.current.value = attackOrder;
   }, [typeFilter, originFilter, nameOrder, attackOrder]);
 
-  const handleFilter = (e) => {
-    const { name: selectName, value: selectedFilter } = e.target;
-    if (selectName === "filterByTypeSelect") {
-      dispatch(filterByType(selectedFilter));
-    } else {
-      dispatch(filterByOrigin(selectedFilter));
+  const handleFilters = (e) => {
+    const { name: selectName, value: selectValue } = e.target;
+    if (selectName === "typeFilter") {
+      dispatch(updateTypeFilter(selectValue));
+    } else if (selectName === "originFilter") {
+      dispatch(updateOriginFilter(selectValue));
+    } else if (selectName === "nameSelect") {
+      dispatch(updateNameOrder(selectValue));
+    } else if (selectName === "attackSelect") {
+      dispatch(updateAttackOrder(selectValue));
     }
-    changePage(1);
-  };
-
-  const handleSort = (e) => {
-    const { name: selectName, value: selectedOrder } = e.target;
-    if (selectName === "sortByNameSelect") {
-      dispatch(sortByName(selectedOrder));
-      sortByAttackSelect.current.value = "Default";
-    } else {
-      dispatch(sortByAttack(selectedOrder));
-      sortByNameSelect.current.value = "Default";
-    }
+    dispatch(filterPokemons());
     changePage(1);
   };
 
   const handleReset = () => {
     dispatch(resetFilters());
-    filterByTypeSelect.current.value = "All";
-    filterByOriginSelect.current.value = "All";
-    sortByNameSelect.current.value = "Default";
-    sortByAttackSelect.current.value = "Default";
+    dispatch(filterPokemons());
     changePage(1);
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.selectContainer}>
-        <label htmlFor="filterByTypeSelect" className={styles.label}>
+        <label htmlFor="typeSelect" className={styles.label}>
           Filter by Type
         </label>
         <select
           defaultValue="All"
-          name="filterByTypeSelect"
-          ref={filterByTypeSelect}
-          onChange={handleFilter}
+          name="typeSelect"
+          ref={typeSelect}
+          onChange={handleFilters}
           className={styles.select}
         >
           <option value="All">All types</option>
@@ -84,14 +75,14 @@ function FilterAndSort({ changePage }) {
       </div>
 
       <div className={styles.selectContainer}>
-        <label htmlFor="filterByOriginSelect" className={styles.label}>
+        <label htmlFor="originSelect" className={styles.label}>
           Filter by Origin
         </label>
         <select
           defaultValue="All"
-          name="filterByOriginSelect"
-          ref={filterByOriginSelect}
-          onChange={handleFilter}
+          name="originSelect"
+          ref={originSelect}
+          onChange={handleFilters}
           className={styles.select}
         >
           <option value="All">All origins</option>
@@ -101,14 +92,14 @@ function FilterAndSort({ changePage }) {
       </div>
 
       <div className={styles.selectContainer}>
-        <label htmlFor="sortByNameSelect" className={styles.label}>
+        <label htmlFor="nameSelect" className={styles.label}>
           Sort by Name
         </label>
         <select
           defaultValue="Default"
-          name="sortByNameSelect"
-          ref={sortByNameSelect}
-          onChange={handleSort}
+          name="nameSelect"
+          ref={nameSelect}
+          onChange={handleFilters}
           className={styles.select}
         >
           <option value="Default">Default</option>
@@ -118,14 +109,14 @@ function FilterAndSort({ changePage }) {
       </div>
 
       <div className={styles.selectContainer}>
-        <label htmlFor="sortByAttackSelect" className={styles.label}>
+        <label htmlFor="attackSelect" className={styles.label}>
           Sort by Attack
         </label>
         <select
           defaultValue="Default"
-          name="sortByAttackSelect"
-          ref={sortByAttackSelect}
-          onChange={handleSort}
+          name="attackSelect"
+          ref={attackSelect}
+          onChange={handleFilters}
           className={styles.select}
         >
           <option value="Default">Default</option>
