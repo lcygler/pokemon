@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterPokemons, getPokemons, getTypes } from "../../redux/actions";
+import { filterPokemons, getPokemons, getTypes, setCurrentPage } from "../../redux/actions";
 
 import { Cards, FilterAndSort, Pagination, SearchBar } from "../../components/index";
 import styles from "./Home.module.css";
 
 function Home() {
   const dispatch = useDispatch();
+
   const allPokemons = useSelector((state) => state.allPokemons);
   const filteredPokemons = useSelector((state) => state.filteredPokemons);
-  const [page, setPage] = useState(1);
+  const currentPage = useSelector((state) => state.currentPage);
+
   const [pokemonsPerPage] = useState(12);
   const [showError, setShowError] = useState(false);
 
@@ -32,12 +34,12 @@ function Home() {
   }, []);
 
   const totalPages = Math.ceil(filteredPokemons.length / pokemonsPerPage);
-  const startIndex = (page - 1) * pokemonsPerPage;
+  const startIndex = (currentPage - 1) * pokemonsPerPage;
   const endIndex = startIndex + pokemonsPerPage;
   const currentPokemons = filteredPokemons.slice(startIndex, endIndex);
 
   const changePage = (pageNumber) => {
-    setPage(pageNumber);
+    dispatch(setCurrentPage(pageNumber));
   };
 
   return (
@@ -70,7 +72,7 @@ function Home() {
       ) : (
         <>
           <Cards currentPokemons={currentPokemons} />
-          <Pagination totalPages={totalPages} currentPage={page} changePage={changePage} />
+          <Pagination totalPages={totalPages} currentPage={currentPage} changePage={changePage} />
         </>
       )}
     </div>

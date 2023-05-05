@@ -16,6 +16,8 @@ export const SORT_BY_NAME = "SORT_BY_NAME";
 export const SORT_BY_ATTACK = "SORT_BY_ATTACK";
 export const RESET_FILTERS = "RESET_FILTERS";
 
+export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+
 export const getPokemons = () => {
   return async (dispatch) => {
     try {
@@ -140,5 +142,12 @@ export const sortByAttack = (order) => {
 export const resetFilters = () => {
   return {
     type: RESET_FILTERS,
+  };
+};
+
+export const setCurrentPage = (pageNumber) => {
+  return {
+    type: SET_CURRENT_PAGE,
+    payload: pageNumber,
   };
 };

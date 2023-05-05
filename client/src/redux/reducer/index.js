@@ -9,6 +9,7 @@ import {
   GET_POKEMONS,
   GET_TYPES,
   RESET_FILTERS,
+  SET_CURRENT_PAGE,
   SORT_BY_ATTACK,
   SORT_BY_NAME,
 } from "../actions";
@@ -24,6 +25,7 @@ const initialState = {
   originFilter: "All",
   nameOrder: "Default",
   attackOrder: "Default",
+  currentPage: 1,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -160,6 +162,12 @@ const rootReducer = (state = initialState, action) => {
         originFilter: "All",
         nameOrder: "Default",
         attackOrder: "Default",
+      };
+
+    case SET_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: action.payload,
       };
 
     default:
