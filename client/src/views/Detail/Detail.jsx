@@ -12,11 +12,24 @@ const Detail = () => {
   const { idOrName } = useParams();
   const [showError, setShowError] = useState(false);
 
-  const selectedPokemon = useSelector((state) => state.selectedPokemon);
-  const { id, name, image, hp, attack, defense, speed = null, height = null, weight = null, types } = selectedPokemon;
+  const {
+    id,
+    name,
+    image,
+    hp,
+    attack,
+    defense,
+    speed = null,
+    height = null,
+    weight = null,
+    types,
+  } = useSelector((state) => state.selectedPokemon);
+
   const formattedName = name?.toUpperCase();
-  const formattedTypes = types?.map((element) => element.charAt(0).toUpperCase() + element.slice(1));
-  const [type1, type2] = formattedTypes || [];
+
+  const [type1, type2] = (types || []).map(
+    (element) => element.charAt(0).toUpperCase() + element.slice(1)
+  );
 
   const input = String(idOrName).trim();
   const isUuid = uuidRegex.test(input);

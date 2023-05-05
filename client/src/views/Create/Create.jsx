@@ -247,7 +247,13 @@ const Create = () => {
               <label htmlFor="type1" className={styles.label}>
                 Type 1
               </label>
-              <select id="type1" name="type1" value={formData.type1} onChange={handleChange} className={styles.select}>
+              <select
+                id="type1"
+                name="type1"
+                value={formData.type1}
+                onChange={handleChange}
+                className={styles.select}
+              >
                 <option value=""></option>
                 {types.map((element) => (
                   <option key={element.id} value={element.name}>
@@ -262,7 +268,13 @@ const Create = () => {
               <label htmlFor="type2" className={styles.label}>
                 Type 2
               </label>
-              <select id="type2" name="type2" value={formData.type2} onChange={handleChange} className={styles.select}>
+              <select
+                id="type2"
+                name="type2"
+                value={formData.type2}
+                onChange={handleChange}
+                className={styles.select}
+              >
                 <option value=""></option>
                 {types
                   .filter((element) => element.name !== "unknown")

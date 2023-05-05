@@ -3,8 +3,10 @@ import styles from "./Card.module.css";
 
 function Card({ id, name, types, image }) {
   const formattedName = name?.toUpperCase();
-  const formattedTypes = types?.map((element) => element.charAt(0).toUpperCase() + element.slice(1));
-  const [type1, type2] = formattedTypes || [];
+
+  const [type1, type2] = (types || []).map(
+    (element) => element.charAt(0).toUpperCase() + element.slice(1)
+  );
 
   return (
     <Link to={`/home/${id}`}>

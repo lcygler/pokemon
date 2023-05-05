@@ -1,6 +1,12 @@
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterByOrigin, filterByType, resetFilters, sortByAttack, sortByName } from "../../redux/actions";
+import {
+  filterByOrigin,
+  filterByType,
+  resetFilters,
+  sortByAttack,
+  sortByName,
+} from "../../redux/actions";
 import styles from "./FilterAndSort.module.css";
 
 function FilterAndSort({ changePage }) {
