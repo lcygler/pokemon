@@ -16,13 +16,13 @@ function Home() {
   const [showError, setShowError] = useState(false);
 
   useEffect(() => {
-    dispatch(getPokemons());
+    const fetchPokemons = async () => {
+      await dispatch(getPokemons());
+      dispatch(filterPokemons());
+    };
+    fetchPokemons();
     dispatch(getTypes());
   }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(filterPokemons());
-  }, [allPokemons]); //eslint-disable-line
 
   useEffect(() => {
     const timer = setTimeout(() => {
