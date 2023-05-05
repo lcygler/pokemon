@@ -30,29 +30,25 @@ function FilterAndSort({ changePage }) {
     sortByAttackSelect.current.value = attackOrder;
   }, [typeFilter, originFilter, nameOrder, attackOrder]);
 
-  const handleFilterByType = (e) => {
-    const selectedType = e.target.value;
-    dispatch(filterByType(selectedType));
+  const handleFilter = (e) => {
+    const { name: selectName, value: selectedFilter } = e.target;
+    if (selectName === "filterByTypeSelect") {
+      dispatch(filterByType(selectedFilter));
+    } else {
+      dispatch(filterByOrigin(selectedFilter));
+    }
     changePage(1);
   };
 
-  const handleFilterByOrigin = (e) => {
-    const selectedOrigin = e.target.value;
-    dispatch(filterByOrigin(selectedOrigin));
-    changePage(1);
-  };
-
-  const handleSortByName = (e) => {
-    const selectedOrder = e.target.value;
-    dispatch(sortByName(selectedOrder));
-    sortByAttackSelect.current.value = "Default";
-    changePage(1);
-  };
-
-  const handleSortByAttack = (e) => {
-    const selectedOrder = e.target.value;
-    dispatch(sortByAttack(selectedOrder));
-    sortByNameSelect.current.value = "Default";
+  const handleSort = (e) => {
+    const { name: selectName, value: selectedOrder } = e.target;
+    if (selectName === "sortByNameSelect") {
+      dispatch(sortByName(selectedOrder));
+      sortByAttackSelect.current.value = "Default";
+    } else {
+      dispatch(sortByAttack(selectedOrder));
+      sortByNameSelect.current.value = "Default";
+    }
     changePage(1);
   };
 
@@ -75,7 +71,7 @@ function FilterAndSort({ changePage }) {
           defaultValue="All"
           name="filterByTypeSelect"
           ref={filterByTypeSelect}
-          onChange={handleFilterByType}
+          onChange={handleFilter}
           className={styles.select}
         >
           <option value="All">All types</option>
@@ -95,7 +91,7 @@ function FilterAndSort({ changePage }) {
           defaultValue="All"
           name="filterByOriginSelect"
           ref={filterByOriginSelect}
-          onChange={handleFilterByOrigin}
+          onChange={handleFilter}
           className={styles.select}
         >
           <option value="All">All origins</option>
@@ -112,7 +108,7 @@ function FilterAndSort({ changePage }) {
           defaultValue="Default"
           name="sortByNameSelect"
           ref={sortByNameSelect}
-          onChange={handleSortByName}
+          onChange={handleSort}
           className={styles.select}
         >
           <option value="Default">Default</option>
@@ -129,7 +125,7 @@ function FilterAndSort({ changePage }) {
           defaultValue="Default"
           name="sortByAttackSelect"
           ref={sortByAttackSelect}
-          onChange={handleSortByAttack}
+          onChange={handleSort}
           className={styles.select}
         >
           <option value="Default">Default</option>
