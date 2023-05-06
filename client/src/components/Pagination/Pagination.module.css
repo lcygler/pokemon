@@ -10,7 +10,7 @@
 .lastPageButton,
 .pageButton,
 .activePageButton {
-  background-color: #2ecc71;
+  background-color: #ffffff20;
   border: none;
   border-radius: 25px;
   color: white;
@@ -19,7 +19,6 @@
   margin-left: 3px;
   margin-right: 3px;
   padding: 2px 15px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .prevPageButton:hover,
@@ -27,7 +26,8 @@
 .firstPageButton:hover,
 .lastPageButton:hover,
 .pageButton:hover {
-  background-color: #27ae60;
+  background-color: #2ecc71;
+  color: white;
   cursor: pointer;
 }
 
@@ -39,4 +39,5 @@
 
 .activePageButton {
   background-color: #229c56;
+  color: white;
 }
