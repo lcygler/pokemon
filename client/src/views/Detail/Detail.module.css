@@ -130,18 +130,34 @@
   justify-content: center;
 }
 
+.prevButton,
+.nextButton,
 .homeButton {
   background-color: #2ecc71;
-  background-image: url("../../assets/icons/svg/arrow-left.svg");
   background-position: center;
   background-repeat: no-repeat;
   border: none;
   border-radius: 100px;
   cursor: pointer;
-  height: 50px;
+  height: 40px;
+  margin: 0 5px;
   width: 70px;
 }
 
+.prevButton {
+  background-image: url("../../assets/icons/svg/arrow-left.svg");
+}
+
+.nextButton {
+  background-image: url("../../assets/icons/svg/arrow-right.svg");
+}
+
+.homeButton {
+  background-image: url("../../assets/icons/svg/home.svg");
+}
+
+.prevButton:hover,
+.nextButton:hover,
 .homeButton:hover {
   background-color: #27ae60;
 }

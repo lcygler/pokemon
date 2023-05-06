@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { clearDetail, getById, getByName } from "../../redux/actions";
@@ -9,8 +9,13 @@ import styles from "./Detail.module.css";
 
 const Detail = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { idOrName } = useParams();
   const [showError, setShowError] = useState(false);
+  const [timerId, setTimerId] = useState(null);
+
+  const filteredPokemons = useSelector((state) => state.filteredPokemons);
+  const selectedPokemon = useSelector((state) => state.selectedPokemon);
 
   const {
     name,
@@ -22,7 +27,7 @@ const Detail = () => {
     height = null,
     weight = null,
     types,
-  } = useSelector((state) => state.selectedPokemon);
+  } = selectedPokemon;
 
   const formattedName = name?.toUpperCase();
 
@@ -49,10 +54,31 @@ const Detail = () => {
     const timer = setTimeout(() => {
       setShowError(true);
     }, 10000);
+    setTimerId(timer);
     return () => {
       clearTimeout(timer);
     };
   }, []);
+
+  const handlePrev = () => {
+    const index = filteredPokemons.findIndex((pokemon) => pokemon.id === selectedPokemon?.id);
+    if (index > 0) {
+      const prevPokemon = filteredPokemons[index - 1];
+      clearTimeout(timerId);
+      setTimerId(null);
+      history.push(`/home/${prevPokemon.id}`);
+    }
+  };
+
+  const handleNext = () => {
+    const index = filteredPokemons.findIndex((pokemon) => pokemon.id === selectedPokemon?.id);
+    if (index !== -1 && index < filteredPokemons.length - 1) {
+      const nextPokemon = filteredPokemons[index + 1];
+      clearTimeout(timerId);
+      setTimerId(null);
+      history.push(`/home/${nextPokemon.id}`);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -86,9 +112,11 @@ const Detail = () => {
           </div>
 
           <div className={styles.buttonContainer}>
+            <button className={styles.prevButton} onClick={handlePrev}></button>
             <Link to="/home" className={styles.link}>
               <button className={styles.homeButton}></button>
             </Link>
+            <button className={styles.nextButton} onClick={handleNext}></button>
           </div>
         </div>
       ) : (
