@@ -124,18 +124,20 @@ const Create = () => {
           </div>
 
           <div className={styles.field}>
-            <label htmlFor="image" className={styles.label}>
-              Image
+            <label htmlFor="hp" className={styles.label}>
+              HP
             </label>
             <input
-              type="url"
-              id="image"
-              name="image"
-              value={formData.image}
+              type="number"
+              id="hp"
+              name="hp"
+              min="0"
+              max="255"
+              value={formData.hp}
               onChange={handleChange}
               className={styles.input}
             />
-            <small className={styles.error}>{errors.image}</small>
+            <small className={styles.error}>{errors.hp}</small>
           </div>
 
           <div className={styles.field}>
@@ -173,40 +175,6 @@ const Create = () => {
           </div>
 
           <div className={styles.field}>
-            <label htmlFor="hp" className={styles.label}>
-              HP
-            </label>
-            <input
-              type="number"
-              id="hp"
-              name="hp"
-              min="0"
-              max="255"
-              value={formData.hp}
-              onChange={handleChange}
-              className={styles.input}
-            />
-            <small className={styles.error}>{errors.hp}</small>
-          </div>
-
-          <div className={styles.field}>
-            <label htmlFor="speed" className={styles.label}>
-              Speed
-            </label>
-            <input
-              type="number"
-              id="speed"
-              name="speed"
-              min="0"
-              max="255"
-              value={formData.speed}
-              onChange={handleChange}
-              className={styles.input}
-            />
-            <small className={styles.error}>{errors.speed}</small>
-          </div>
-
-          <div className={styles.field}>
             <label htmlFor="height" className={styles.label}>
               Height
             </label>
@@ -238,6 +206,38 @@ const Create = () => {
               className={styles.input}
             />
             <small className={styles.error}>{errors.weight}</small>
+          </div>
+
+          <div className={styles.field}>
+            <label htmlFor="speed" className={styles.label}>
+              Speed
+            </label>
+            <input
+              type="number"
+              id="speed"
+              name="speed"
+              min="0"
+              max="255"
+              value={formData.speed}
+              onChange={handleChange}
+              className={styles.input}
+            />
+            <small className={styles.error}>{errors.speed}</small>
+          </div>
+
+          <div className={styles.field}>
+            <label htmlFor="image" className={styles.label}>
+              Image URL
+            </label>
+            <input
+              type="url"
+              id="image"
+              name="image"
+              value={formData.image}
+              onChange={handleChange}
+              className={styles.input}
+            />
+            <small className={styles.error}>{errors.image}</small>
           </div>
 
           <div className={styles.field}>
