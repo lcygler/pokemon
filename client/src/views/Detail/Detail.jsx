@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -12,7 +12,7 @@ const Detail = () => {
   const history = useHistory();
   const { idOrName } = useParams();
   const [showError, setShowError] = useState(false);
-  const [timerId, setTimerId] = useState(null);
+  const timerIdRef = useRef(null);
 
   const filteredPokemons = useSelector((state) => state.filteredPokemons);
   const selectedPokemon = useSelector((state) => state.selectedPokemon);
@@ -54,18 +54,19 @@ const Detail = () => {
     const timer = setTimeout(() => {
       setShowError(true);
     }, 10000);
-    setTimerId(timer);
+    timerIdRef.current = timer;
     return () => {
-      clearTimeout(timer);
+      clearTimeout(timerIdRef.current);
     };
-  }, []);
+  }, [selectedPokemon]);
 
   const handlePrev = () => {
     const index = filteredPokemons.findIndex((pokemon) => pokemon.id === selectedPokemon?.id);
     if (index > 0) {
       const prevPokemon = filteredPokemons[index - 1];
-      clearTimeout(timerId);
-      setTimerId(null);
+      setShowError(false);
+      clearTimeout(timerIdRef.current);
+      timerIdRef.current = null;
       history.push(`/home/${prevPokemon.id}`);
     }
   };
@@ -74,8 +75,9 @@ const Detail = () => {
     const index = filteredPokemons.findIndex((pokemon) => pokemon.id === selectedPokemon?.id);
     if (index !== -1 && index < filteredPokemons.length - 1) {
       const nextPokemon = filteredPokemons[index + 1];
-      clearTimeout(timerId);
-      setTimerId(null);
+      setShowError(false);
+      clearTimeout(timerIdRef.current);
+      timerIdRef.current = null;
       history.push(`/home/${nextPokemon.id}`);
     }
   };
