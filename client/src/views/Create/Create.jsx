@@ -124,123 +124,6 @@ const Create = () => {
           </div>
 
           <div className={styles.field}>
-            <label htmlFor="hp" className={styles.label}>
-              HP
-            </label>
-            <input
-              type="number"
-              id="hp"
-              name="hp"
-              min="0"
-              max="255"
-              value={formData.hp}
-              onChange={handleChange}
-              className={styles.input}
-            />
-            <small className={styles.error}>{errors.hp}</small>
-          </div>
-
-          <div className={styles.field}>
-            <label htmlFor="attack" className={styles.label}>
-              Attack
-            </label>
-            <input
-              type="number"
-              id="attack"
-              name="attack"
-              min="0"
-              max="255"
-              value={formData.attack}
-              onChange={handleChange}
-              className={styles.input}
-            />
-            <small className={styles.error}>{errors.attack}</small>
-          </div>
-
-          <div className={styles.field}>
-            <label htmlFor="defense" className={styles.label}>
-              Defense
-            </label>
-            <input
-              type="number"
-              id="defense"
-              name="defense"
-              min="0"
-              max="255"
-              value={formData.defense}
-              onChange={handleChange}
-              className={styles.input}
-            />
-            <small className={styles.error}>{errors.defense}</small>
-          </div>
-
-          <div className={styles.field}>
-            <label htmlFor="height" className={styles.label}>
-              Height
-            </label>
-            <input
-              type="number"
-              id="height"
-              name="height"
-              min="1"
-              max="14"
-              value={formData.height}
-              onChange={handleChange}
-              className={styles.input}
-            />
-            <small className={styles.error}>{errors.height}</small>
-          </div>
-
-          <div className={styles.field}>
-            <label htmlFor="weight" className={styles.label}>
-              Weight
-            </label>
-            <input
-              type="number"
-              id="weight"
-              name="weight"
-              min="1"
-              max="999"
-              value={formData.weight}
-              onChange={handleChange}
-              className={styles.input}
-            />
-            <small className={styles.error}>{errors.weight}</small>
-          </div>
-
-          <div className={styles.field}>
-            <label htmlFor="speed" className={styles.label}>
-              Speed
-            </label>
-            <input
-              type="number"
-              id="speed"
-              name="speed"
-              min="0"
-              max="255"
-              value={formData.speed}
-              onChange={handleChange}
-              className={styles.input}
-            />
-            <small className={styles.error}>{errors.speed}</small>
-          </div>
-
-          <div className={styles.field}>
-            <label htmlFor="image" className={styles.label}>
-              Image URL
-            </label>
-            <input
-              type="url"
-              id="image"
-              name="image"
-              value={formData.image}
-              onChange={handleChange}
-              className={styles.input}
-            />
-            <small className={styles.error}>{errors.image}</small>
-          </div>
-
-          <div className={styles.field}>
             <label htmlFor="type1" className={styles.label}>
               Type 1
             </label>
@@ -282,6 +165,123 @@ const Create = () => {
                 ))}
             </select>
             <small className={styles.error}>{errors.type2}</small>
+          </div>
+
+          <div className={styles.field}>
+            <label htmlFor="attack" className={styles.label}>
+              Attack
+            </label>
+            <input
+              type="number"
+              id="attack"
+              name="attack"
+              min="0"
+              max="255"
+              value={formData.attack}
+              onChange={handleChange}
+              className={styles.input}
+            />
+            <small className={styles.error}>{errors.attack}</small>
+          </div>
+
+          <div className={styles.field}>
+            <label htmlFor="defense" className={styles.label}>
+              Defense
+            </label>
+            <input
+              type="number"
+              id="defense"
+              name="defense"
+              min="0"
+              max="255"
+              value={formData.defense}
+              onChange={handleChange}
+              className={styles.input}
+            />
+            <small className={styles.error}>{errors.defense}</small>
+          </div>
+
+          <div className={styles.field}>
+            <label htmlFor="speed" className={styles.label}>
+              Speed
+            </label>
+            <input
+              type="number"
+              id="speed"
+              name="speed"
+              min="0"
+              max="255"
+              value={formData.speed}
+              onChange={handleChange}
+              className={styles.input}
+            />
+            <small className={styles.error}>{errors.speed}</small>
+          </div>
+
+          <div className={styles.field}>
+            <label htmlFor="hp" className={styles.label}>
+              HP
+            </label>
+            <input
+              type="number"
+              id="hp"
+              name="hp"
+              min="0"
+              max="255"
+              value={formData.hp}
+              onChange={handleChange}
+              className={styles.input}
+            />
+            <small className={styles.error}>{errors.hp}</small>
+          </div>
+
+          <div className={styles.field}>
+            <label htmlFor="height" className={styles.label}>
+              Height
+            </label>
+            <input
+              type="number"
+              id="height"
+              name="height"
+              min="1"
+              max="14"
+              value={formData.height}
+              onChange={handleChange}
+              className={styles.input}
+            />
+            <small className={styles.error}>{errors.height}</small>
+          </div>
+
+          <div className={styles.field}>
+            <label htmlFor="weight" className={styles.label}>
+              Weight
+            </label>
+            <input
+              type="number"
+              id="weight"
+              name="weight"
+              min="1"
+              max="999"
+              value={formData.weight}
+              onChange={handleChange}
+              className={styles.input}
+            />
+            <small className={styles.error}>{errors.weight}</small>
+          </div>
+
+          <div className={`${styles.field} ${styles.imageContainer}`}>
+            <label htmlFor="image" className={styles.label}>
+              Image URL
+            </label>
+            <input
+              type="url"
+              id="image"
+              name="image"
+              value={formData.image}
+              onChange={handleChange}
+              className={`${styles.input} ${styles.imageInput}`}
+            />
+            <small className={styles.error}>{errors.image}</small>
           </div>
         </div>
 
