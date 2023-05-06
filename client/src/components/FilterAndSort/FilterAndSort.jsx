@@ -95,9 +95,7 @@ function FilterAndSort({ changePage }) {
         </select>
       </div>
 
-      <button value="reset" onClick={handleReset} className={styles.resetButton}>
-        Reset
-      </button>
+      <button value="reset" onClick={handleReset} className={styles.resetButton}></button>
     </div>
   );
 }
