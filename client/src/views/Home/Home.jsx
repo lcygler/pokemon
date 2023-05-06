@@ -55,9 +55,10 @@ function Home() {
           {showError ? (
             <div className={styles.refreshContainer}>
               <p className={styles.error}>Error loading data. Please try again</p>
-              <button onClick={() => window.location.reload()} className={styles.refreshButton}>
-                Refresh
-              </button>
+              <button
+                onClick={() => window.location.reload()}
+                className={styles.refreshButton}
+              ></button>
             </div>
           ) : (
             <div className={styles.loaderContainer}>
