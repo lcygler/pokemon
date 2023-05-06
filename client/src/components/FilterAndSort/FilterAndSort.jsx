@@ -87,7 +87,7 @@ function FilterAndSort({ changePage }) {
           onChange={handleFilters}
           className={styles.select}
         >
-          <option value="Default">Sorty By</option>
+          <option value="Default">Sort By</option>
           <option value="Name (A-Z)">Name (A-Z)</option>
           <option value="Name (Z-A)">Name (Z-A)</option>
           <option value="Attack (Asc)">Attack (Asc)</option>
