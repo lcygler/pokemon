@@ -41,7 +41,7 @@ function SearchBar() {
         onKeyDown={handleKeyPress}
       />
       <button className={styles.searchButton} onClick={handleSearch}>
-        Search
+        <div className={styles.searchIcon}></div>
       </button>
       <Link to="/create" className={styles.link}>
         <span>Create a Pokémon</span>
