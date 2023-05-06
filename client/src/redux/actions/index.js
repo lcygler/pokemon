@@ -12,8 +12,7 @@ export const CLEAR_DETAIL = "CLEAR_DETAIL";
 export const FILTER_POKEMONS = "FILTER_POKEMONS";
 export const UPDATE_TYPE_FILTER = "UPDATE_TYPE_FILTER";
 export const UPDATE_ORIGIN_FILTER = "UPDATE_ORIGIN_FILTER";
-export const UPDATE_NAME_ORDER = "UPDATE_NAME_ORDER";
-export const UPDATE_ATTACK_ORDER = "UPDATE_ATTACK_ORDER";
+export const UPDATE_ORDER = "UPDATE_ORDER";
 export const RESET_FILTERS = "RESET_FILTERS";
 
 export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
@@ -125,16 +124,9 @@ export const updateOriginFilter = (origin) => {
   };
 };
 
-export const updateNameOrder = (order) => {
+export const updateOrder = (order) => {
   return {
-    type: UPDATE_NAME_ORDER,
-    payload: order,
-  };
-};
-
-export const updateAttackOrder = (order) => {
-  return {
-    type: UPDATE_ATTACK_ORDER,
+    type: UPDATE_ORDER,
     payload: order,
   };
 };

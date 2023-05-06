@@ -8,13 +8,12 @@ import {
   GET_TYPES,
   RESET_FILTERS,
   SET_CURRENT_PAGE,
-  UPDATE_ATTACK_ORDER,
-  UPDATE_NAME_ORDER,
+  UPDATE_ORDER,
   UPDATE_ORIGIN_FILTER,
   UPDATE_TYPE_FILTER,
 } from "../actions";
 
-import { filterByOrigin, filterByType, sortByAttack, sortByName } from "./helpers";
+import { filterByOrigin, filterByType, sortPokemons } from "./helpers";
 
 const initialState = {
   allPokemons: [],
@@ -23,8 +22,7 @@ const initialState = {
   types: [],
   typeFilter: "All",
   originFilter: "All",
-  nameOrder: "Default",
-  attackOrder: "Default",
+  order: "Default",
   currentPage: 1,
 };
 
@@ -77,12 +75,8 @@ const rootReducer = (state = initialState, action) => {
         filteredSorted = filterByOrigin(filteredSorted, state.originFilter);
       }
 
-      if (state.attackOrder !== "Default") {
-        filteredSorted = sortByAttack(filteredSorted, state.attackOrder);
-      }
-
-      if (state.nameOrder !== "Default") {
-        filteredSorted = sortByName(filteredSorted, state.nameOrder);
+      if (state.order !== "Default") {
+        filteredSorted = sortPokemons(filteredSorted, state.order);
       }
 
       return {
@@ -102,18 +96,10 @@ const rootReducer = (state = initialState, action) => {
         originFilter: action.payload,
       };
 
-    case UPDATE_NAME_ORDER:
+    case UPDATE_ORDER:
       return {
         ...state,
-        nameOrder: action.payload,
-        attackOrder: "Default",
-      };
-
-    case UPDATE_ATTACK_ORDER:
-      return {
-        ...state,
-        attackOrder: action.payload,
-        nameOrder: "Default",
+        order: action.payload,
       };
 
     case RESET_FILTERS:
@@ -121,8 +107,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         typeFilter: "All",
         originFilter: "All",
-        nameOrder: "Default",
-        attackOrder: "Default",
+        order: "Default",
       };
 
     case SET_CURRENT_PAGE:

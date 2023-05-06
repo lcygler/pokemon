@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   filterPokemons,
   resetFilters,
-  updateAttackOrder,
-  updateNameOrder,
+  updateOrder,
   updateOriginFilter,
   updateTypeFilter,
 } from "../../redux/actions";
@@ -16,20 +15,17 @@ function FilterAndSort({ changePage }) {
   const types = useSelector((state) => state.types);
   const typeFilter = useSelector((state) => state.typeFilter);
   const originFilter = useSelector((state) => state.originFilter);
-  const nameOrder = useSelector((state) => state.nameOrder);
-  const attackOrder = useSelector((state) => state.attackOrder);
+  const order = useSelector((state) => state.order);
 
   const typeSelect = useRef(null);
   const originSelect = useRef(null);
-  const nameSelect = useRef(null);
-  const attackSelect = useRef(null);
+  const orderSelect = useRef(null);
 
   useEffect(() => {
     typeSelect.current.value = typeFilter;
     originSelect.current.value = originFilter;
-    nameSelect.current.value = nameOrder;
-    attackSelect.current.value = attackOrder;
-  }, [typeFilter, originFilter, nameOrder, attackOrder]);
+    orderSelect.current.value = order;
+  }, [typeFilter, originFilter, order]);
 
   const handleFilters = (e) => {
     const { name: selectName, value: selectValue } = e.target;
@@ -37,10 +33,8 @@ function FilterAndSort({ changePage }) {
       dispatch(updateTypeFilter(selectValue));
     } else if (selectName === "originSelect") {
       dispatch(updateOriginFilter(selectValue));
-    } else if (selectName === "nameSelect") {
-      dispatch(updateNameOrder(selectValue));
-    } else if (selectName === "attackSelect") {
-      dispatch(updateAttackOrder(selectValue));
+    } else if (selectName === "orderSelect") {
+      dispatch(updateOrder(selectValue));
     }
     dispatch(filterPokemons());
     changePage(1);
@@ -55,9 +49,6 @@ function FilterAndSort({ changePage }) {
   return (
     <div className={styles.container}>
       <div className={styles.selectContainer}>
-        <label htmlFor="typeSelect" className={styles.label}>
-          Filter by Type
-        </label>
         <select
           defaultValue="All"
           name="typeSelect"
@@ -65,7 +56,7 @@ function FilterAndSort({ changePage }) {
           onChange={handleFilters}
           className={styles.select}
         >
-          <option value="All">All types</option>
+          <option value="All">All Types</option>
           {types.map((type) => (
             <option key={type.id} value={type.name}>
               {type.name.charAt(0).toUpperCase() + type.name.slice(1)}
@@ -75,9 +66,6 @@ function FilterAndSort({ changePage }) {
       </div>
 
       <div className={styles.selectContainer}>
-        <label htmlFor="originSelect" className={styles.label}>
-          Filter by Origin
-        </label>
         <select
           defaultValue="All"
           name="originSelect"
@@ -85,43 +73,25 @@ function FilterAndSort({ changePage }) {
           onChange={handleFilters}
           className={styles.select}
         >
-          <option value="All">All origins</option>
+          <option value="All">All Origins</option>
           <option value="API">API</option>
           <option value="Database">Database</option>
         </select>
       </div>
 
       <div className={styles.selectContainer}>
-        <label htmlFor="nameSelect" className={styles.label}>
-          Sort by Name
-        </label>
         <select
           defaultValue="Default"
-          name="nameSelect"
-          ref={nameSelect}
+          name="orderSelect"
+          ref={orderSelect}
           onChange={handleFilters}
           className={styles.select}
         >
-          <option value="Default">Default</option>
-          <option value="A-Z">A-Z</option>
-          <option value="Z-A">Z-A</option>
-        </select>
-      </div>
-
-      <div className={styles.selectContainer}>
-        <label htmlFor="attackSelect" className={styles.label}>
-          Sort by Attack
-        </label>
-        <select
-          defaultValue="Default"
-          name="attackSelect"
-          ref={attackSelect}
-          onChange={handleFilters}
-          className={styles.select}
-        >
-          <option value="Default">Default</option>
-          <option value="Low-High">Low-High</option>
-          <option value="High-Low">High-Low</option>
+          <option value="Default">Sorty By</option>
+          <option value="Name (A-Z)">Name (A-Z)</option>
+          <option value="Name (Z-A)">Name (Z-A)</option>
+          <option value="Attack (Asc)">Attack (Asc)</option>
+          <option value="Attack (Desc)">Attack (Desc)</option>
         </select>
       </div>
 
