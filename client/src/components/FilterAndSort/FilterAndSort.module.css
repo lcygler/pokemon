@@ -2,13 +2,7 @@
   align-items: flex-end;
   display: flex;
   flex-direction: row;
-  margin-bottom: 45px;
-}
-
-.label {
-  color: white;
-  font-size: 1rem;
-  margin-bottom: 5px;
+  margin-bottom: 30px;
 }
 
 .selectContainer {
@@ -25,10 +19,9 @@
   cursor: pointer;
   font-size: 0.9rem;
   height: 30px;
-  margin-top: 5px;
   outline: none;
   padding: 0 5px;
-  width: 120px;
+  width: 125px;
 }
 
 .resetButton {
