@@ -68,7 +68,7 @@
   justify-content: center;
 }
 
-.propsContainer {
+.detailContainer {
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -87,26 +87,39 @@
   animation: shake-vertical 1s linear both;
 }
 
-.textContainer {
+.statsContainer {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
   margin-left: 20px;
 }
 
-.textRow {
+.statsRow {
   display: flex;
 }
 
-.text {
-  background-color: #6bc09e;
+.stat {
+  background-color: #ffffff40;
   border-radius: 25px;
-  color: black;
+  color: white;
   height: 40px;
   line-height: 40px;
   margin-right: 10px;
   padding: 0 15px;
   white-space: nowrap;
+  width: 90px;
+}
+
+.types {
+  background-color: #ffffff40;
+  border-radius: 25px;
+  color: white;
+  height: 40px;
+  line-height: 40px;
+  margin-right: 10px;
+  padding: 0 15px;
+  white-space: nowrap;
+  width: 220px;
 }
 
 .buttonContainer {
@@ -119,19 +132,18 @@
 
 .homeButton {
   background-color: #2ecc71;
+  background-image: url("../../assets/icons/svg/arrow-left.svg");
+  background-position: center;
+  background-repeat: no-repeat;
   border: none;
-  border-radius: 25px;
-  color: white;
+  border-radius: 100px;
   cursor: pointer;
-  font-size: 0.9rem;
-  height: 40px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  width: 100px;
+  height: 50px;
+  width: 70px;
 }
 
 .homeButton:hover {
   background-color: #27ae60;
-  color: white;
 }
 
 .errorContainer {

@@ -13,7 +13,6 @@ const Detail = () => {
   const [showError, setShowError] = useState(false);
 
   const {
-    id,
     name,
     image,
     hp,
@@ -61,37 +60,34 @@ const Detail = () => {
         <div className={styles.cardContainer}>
           <h2 className={styles.name}>{formattedName}</h2>
 
-          <div className={styles.propsContainer}>
+          <div className={styles.detailContainer}>
             {image && <img src={image} alt="" className={styles.image} />}
 
-            <div className={styles.textContainer}>
-              <p className={styles.text}>ID: {id}</p>
-
-              <div className={styles.textRow}>
-                <p className={styles.text}>HP: {hp}</p>
-                {speed > 0 && <p className={styles.text}>Speed: {speed}</p>}
+            <div className={styles.statsContainer}>
+              <div className={styles.statsRow}>
+                <p className={styles.stat}>HP: {hp}</p>
+                <p className={styles.stat}>Speed: {speed > 0 ? speed : "-"}</p>
               </div>
 
-              <div className={styles.textRow}>
-                <p className={styles.text}>Attack: {attack}</p>
-                <p className={styles.text}>Defense: {defense}</p>
+              <div className={styles.statsRow}>
+                <p className={styles.stat}>Attack: {attack}</p>
+                <p className={styles.stat}>Defense: {defense}</p>
               </div>
 
-              <div className={styles.textRow}>
-                {height > 0 && <p className={styles.text}>Height: {height}</p>}
-                {weight > 0 && <p className={styles.text}>Weight: {weight}</p>}
+              <div className={styles.statsRow}>
+                <p className={styles.stat}>Height: {height > 0 ? height : "-"}</p>
+                <p className={styles.stat}>Weight: {weight > 0 ? weight : "-"}</p>
               </div>
 
-              <div className={styles.textRow}>
-                <p className={styles.text}>Type 1: {type1}</p>
-                {type2 && <p className={styles.text}>Type 2: {type2}</p>}
+              <div className={styles.statsRow}>
+                <p className={styles.types}>Type: {`${type1} ${type2 ? "& " + type2 : ""}`}</p>
               </div>
             </div>
           </div>
 
           <div className={styles.buttonContainer}>
             <Link to="/home" className={styles.link}>
-              <button className={styles.homeButton}>Home</button>
+              <button className={styles.homeButton}></button>
             </Link>
           </div>
         </div>
@@ -101,7 +97,7 @@ const Detail = () => {
             <div className={styles.errorContainer}>
               <p className={styles.error}>Error loading data. Please try again</p>
               <Link to="/home" className={styles.link}>
-                <button className={styles.homeButton}>Home</button>
+                <button className={styles.homeButton}></button>
               </Link>
             </div>
           ) : (
