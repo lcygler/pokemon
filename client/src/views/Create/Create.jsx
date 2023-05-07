@@ -105,8 +105,8 @@ const Create = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Create a Pokémon</h2>
       <form onChange={handleForm} onSubmit={handleSubmit} className={styles.form}>
+        <h2 className={styles.title}>Create a Pokémon</h2>
         <div className={styles.formFields}>
           <div className={styles.field}>
             <label htmlFor="name" className={styles.label}>
