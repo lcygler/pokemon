@@ -6,7 +6,9 @@ function Landing() {
     <div className={styles.container}>
       <div className={styles.logo}></div>
       <Link to="/home" className={styles.link}>
-        <button className={styles.button}>Start</button>
+        <button className={styles.button}>
+          <div className={styles.go}></div>
+        </button>
       </Link>
     </div>
   );

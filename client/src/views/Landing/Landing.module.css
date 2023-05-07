@@ -1,3 +1,21 @@
+@keyframes pokeball-glow {
+  0% {
+    background-color: white;
+    box-shadow: 0 0 0 0 white;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    background-color: #e7e7e7;
+    box-shadow: 0 0 0 10px white, 0 0 0 20px #d7d7d7;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  100% {
+    background-color: white;
+    box-shadow: 0 0 0 0 white;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
 .container {
   background-image: url("../../assets/img/background.png");
   background-position: center;
@@ -23,22 +41,26 @@
 }
 
 .button {
-  background-color: black;
+  animation: pokeball-glow 2s ease-in-out infinite;
+  background-color: white;
   border: none;
-  border-radius: 100%;
-  color: white;
+  border-radius: 50%;
   cursor: pointer;
-  font-size: 2rem;
   height: 170px;
   left: 50%;
   position: absolute;
   top: 50%;
-  transform: translate(-50%, -50%);
-  transition: transform 0.2s ease-out;
+  transition: background-color 0.2s ease;
   width: 170px;
 }
 
-.button:hover {
-  background-color: limegreen;
-  transform: translate(-50%, -50%) scale(1.5);
+.go {
+  background-image: url("../../assets/img/go.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  box-sizing: border-box;
+  height: 100%;
+  transform: scale(0.8);
+  width: 100%;
 }
