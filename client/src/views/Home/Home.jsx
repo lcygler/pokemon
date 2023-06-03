@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { filterPokemons, getPokemons, getTypes, setCurrentPage } from "../../redux/actions";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { filterPokemons, getPokemons, getTypes, setCurrentPage } from '../../redux/actions';
 
-import { Cards, FilterAndSort, Pagination, SearchBar } from "../../components/index";
-import styles from "./Home.module.css";
+import { Cards, FilterAndSort, Pagination, SearchBar } from '../../components/index';
+import styles from './Home.module.css';
 
 function Home() {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowError(true);
-    }, 10000);
+    }, 30000);
     return () => {
       clearTimeout(timer);
     };
