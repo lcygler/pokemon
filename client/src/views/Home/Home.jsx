@@ -24,14 +24,14 @@ function Home() {
     dispatch(getTypes());
   }, [dispatch]);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowError(true);
-    }, 30000);
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setShowError(true);
+  //   }, 30000);
+  //   return () => {
+  //     clearTimeout(timer);
+  //   };
+  // }, []);
 
   const totalPages = Math.ceil(filteredPokemons.length / pokemonsPerPage);
   const startIndex = (currentPage - 1) * pokemonsPerPage;
