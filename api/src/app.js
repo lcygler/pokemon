@@ -16,11 +16,16 @@ server.use(morgan("dev"));
 
 server.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
-  // res.header("Access-Control-Allow-Origin", origin);
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS");
-  next();
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Credentials", "true");
+  
+  if (req.method === "OPTIONS") {
+    res.header("Allow", "GET, POST, PUT, PATCH, DELETE, OPTIONS");
+    res.sendStatus(200);
+  } else {
+    next();
+  }
 });
 
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
